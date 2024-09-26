@@ -10,12 +10,12 @@ const footer = [
     {
         Icon: <img src="/images/gift.gif" className="w-16 h-16"/>,
         Title: "Check-in",
-        path: "/checkin"
+        path: "/moon/checkin"
     },
     {
         Icon: <img src="/images/ranking.gif" className="w-16 h-16"/>,
         Title: "Ranking",
-        path: "/ranking"
+        path: "/moon/ranking"
     }   
 ]
 
@@ -79,7 +79,7 @@ export default function Moon() {
                         <Link key={index} href={item.path}>
                             <div className="ring-1 ring-yellow-400 border-t-2 border-t-yellow-400 w-28 h-28 text-xs font-extrabold gap-2 flex-col p-1 rounded-lg flex justify-center items-center bg-gray-600 bg-opacity-30" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                                 {item.Icon}
-                                <div className={`text-white text-lg font-extrabold shadow-lg ${item.Title === 'Moon Spin' ? 'mt-2' : ''}`}>
+                                <div className={`text-white text-lg font-extrabold shadow-lg ${item.Title === 'Moon Spin' ? 'mt-2' : ''}`} style={{ textShadow: "1px 1px 60px yellow"}}>
                                     {item.Title}
                                 </div>
                             </div>
