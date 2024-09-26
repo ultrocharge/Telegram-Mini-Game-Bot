@@ -37,7 +37,7 @@ const footer = [
 export default function Footer() {
     const pathname = usePathname();
     return (
-        <div className="flex flex-row gap-3 justify-center items-center bg-[#1B1B1B] rounded-t-lg text-white p-3 max-w-sm mx-auto">
+        <div className={`${pathname === '/moon/spin' || pathname === '/moon/checkin' || pathname === '/moon/ranking' ? 'hidden' : ''} flex flex-row gap-3 justify-center items-center bg-[#1B1B1B] rounded-t-lg text-white p-3 max-w-sm mx-auto`}>
             {footer.map((item, index) => (
                 <Link key={index} href={item.path}>
                     <div className={`${pathname === item.path ? "ring-1 ring-yellow-400 border-b-2 border-b-yellow-400 bg-gray-600 bg-opacity-30" : ''} w-16 h-16 text-xs font-extrabold gap-2 flex-col p-1 border-b-yellow-400 rounded-lg flex justify-center items-center`} style={{ fontFamily: "'Brush Script MT', cursive"}}>
