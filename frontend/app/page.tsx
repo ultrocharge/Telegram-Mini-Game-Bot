@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     const timer = setTimeout(() => {  
-      router.push('/game');  
+      router.push('/moon');  
     }, 6000);  
 
     // Cleanup timer on component unmount  
