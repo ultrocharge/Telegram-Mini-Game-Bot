@@ -39,3 +39,55 @@ body {
   }  
 }  
 
+.box {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 40px;
+  background: transparent;
+  cursor: pointer;
+  
+  &:hover {
+      filter: contrast(1.1);
+  }
+  
+  &:active {
+      filter: contrast(0.9);
+  }
+  
+  &::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid rgba(255, 217, 0, 0.925);
+      transition: all .5s;
+      animation: clippath 3s infinite linear;
+      border-radius: 40px;
+  }
+  
+  &::after {
+      animation: clippath 3s infinite -1.5s linear;
+  }
+}
+
+@keyframes clippath {
+  0%,
+  100% {
+      clip-path: inset(0 0 80% 0);
+  }
+  
+  25% {
+      clip-path: inset(0 80% 0 0);
+  }
+  50% {
+      clip-path: inset(80% 0 0 0);
+  }
+  75% {
+      clip-path: inset(0 0 0 80%);
+  }
+}
