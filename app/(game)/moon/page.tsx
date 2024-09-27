@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect } from "react";
+
 import Image from "next/image";
 import { FaMoon } from "react-icons/fa";
 import Link from "next/link";
@@ -38,9 +42,25 @@ const footer = [
     }   
 ]
 
+useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // Optional: Expand the web app to full screen
+
+    // Show the back button on the new page
+    tg.BackButton.show();
+
+    const handleBackButtonClick = () => {  
+        window.history.back(); // Go back to the previous page  
+      };  
+
+      // Add an event listener to the button (if applicable)  
+    tg.BackButton.onClick = handleBackButtonClick;
+  }, []);
+
 export default function Moon() {
     const count = 0;
     const username = "MoverzBot"
+
     return (
         <div className="max-w-sm mx-auto flex flex-col gap-5">
             <div className="w-full flex flex-row gap-3 border-b border-stone-700 py-3 justify-between px-4">
