@@ -1,5 +1,5 @@
 import { FaMoon } from "react-icons/fa";
-
+import Image from "next/image";
 export default function CheckIn() {
     const week = 1
     const day = 5
@@ -7,7 +7,12 @@ export default function CheckIn() {
         <div className="flex flex-col justify-between h-screen max-w-sm mx-auto">
             <div>
                 <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between items-center">
-                    <img src="/images/checkin.png" className="w-8 h-8"/>
+                    <Image
+                        src="/images/checkin.png"
+                        width={35}
+                        height={35}
+                        alt="CheckIn"
+                    />
                     <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 10px 50px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
                         Daily Check-In
                     </div>
@@ -23,7 +28,12 @@ export default function CheckIn() {
                             </div>
                         </div>
                         <div className="flex flex-row gap-1 items-center">
-                            <img src="/images/spinicon.png"/>
+                            <Image
+                                src="/images/spinicon.png"
+                                width={23}
+                                height={23}
+                                alt="SpinIcon"
+                            />
                             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-base font-bold text-white flex items-start">
                                 Spins
                             </div>
@@ -58,7 +68,12 @@ export default function CheckIn() {
                                             <>
                                                 <div>+</div>
                                                 <div className="flex flex-col gap-2 items-center justify-center">
-                                                    <img src="/images/spinicon.png"/>
+                                                    <Image
+                                                        src="/images/spinicon.png"
+                                                        width={20}
+                                                        height={20}
+                                                        alt="SpinIcon"
+                                                    />
                                                     <div>1 Spin</div>
                                                 </div>
                                             </>

@@ -1,4 +1,5 @@
 import { MdEmail } from "react-icons/md";
+import Image from "next/image";
 export default function Spin() {
     const count = 0
     return (
@@ -12,7 +13,12 @@ export default function Spin() {
                         </div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
-                        <img src="/images/spinicon.png"/>
+                        <Image
+                            src="/images/spinicon.png"
+                            width={22}
+                            height={22}
+                            alt="Spin Icon"
+                        />
                         <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-base font-bold text-white flex items-start">
                             1 Spin
                         </div>
@@ -28,9 +34,16 @@ export default function Spin() {
             </div>
             <div className="w-full flex items-center justify-center h-[70vh]">
                 <div className="relative">
-                    <div style={{ backgroundImage: "url('/images/spinner.png')", backgroundSize: "100%", backgroundRepeat: "no-repeat"}} className="spinner rounded-full w-72  h-72 xs:w-80 xs:h-80 flex justify-center items-center">
+                    <div style={{ backgroundImage: "url('/images/spinner.png')", backgroundSize: "100%", backgroundRepeat: "no-repeat"}} className="rounded-full w-72  h-72 xs:w-80 xs:h-80 flex justify-center items-center">
                     </div>
-                    <img src="/images/needle.png" className="w-20 h-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3 absolute"/>                        
+                    <div className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3 absolute">
+                        <Image
+                            src="/images/needle.png"
+                            width={75}
+                            height={75}
+                            alt="Spin Needle"
+                        />                     
+                    </div>
                 </div>
             </div>
         </div>

@@ -96,10 +96,42 @@ export default function Ranking() {
                         
                     {rankingList.map((item, index) => (
                         <div key={index} className="flex flex-row gap-3 w-full justify-start items-center text-white font-extrabold p-3 bg-yellow-500 bg-opacity-20 rounded-lg  " style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                            {item.ranking === 1 ? <img src="/images/gold.png" style={{width: "20px", height: "25px"}}/> : null }
-                            {item.ranking === 2 ? <img src="/images/silver.png" style={{width: "20px", height: "25px"}}/> : null }
-                            {item.ranking === 3 ? <img src="/images/brozen.png" style={{width: "20px", height: "25px"}}/> : null }
-                            {item.ranking > 3 ? <img src="/images/platinum.png" style={{width: "20px", height: "25px"}}/> : null }
+                            {item.ranking === 1 ? <Image
+                                src="/images/gold.png"
+                                width={18}
+                                height={18}
+                                alt="GoldMedal"
+                            /> 
+                            : 
+                            null 
+                            }
+                            {item.ranking === 2 ? <Image
+                                src="/images/silver.png"
+                                width={18}
+                                height={18}
+                                alt="Silver Medal"
+                            /> 
+                            : 
+                            null 
+                            }
+                            {item.ranking === 3 ? <Image
+                                src="/images/brozen.png"
+                                width={18}
+                                height={18}
+                                alt="Brozen Medal"
+                            /> 
+                            : 
+                            null 
+                            }
+                            {item.ranking > 3 ? <Image
+                                src="/images/platinum.png"
+                                width={18}
+                                height={18}
+                                alt="Platinum Medal"
+                            /> 
+                            : 
+                            null 
+                            }
                             <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] flex justify-center items-center">
                                 {item.username.slice(0,2)}
                             </div>

@@ -3,17 +3,36 @@ import { FaMoon } from "react-icons/fa";
 import Link from "next/link";
 const footer = [
     {
-        Icon: <img src="/images/spin.gif" className="w-12 h-12 mt-2"/>,
+        Icon:<Image
+                src="/images/spin.gif"
+                width={44}
+                height={44}
+                alt="Spinner"
+                unoptimized={true}
+                style={{marginTop:'10px'}}
+            />,
         Title: "Moon Spin",
         path: "/moon/spin"
     },
     {
-        Icon: <img src="/images/gift.gif" className="w-16 h-16"/>,
+        Icon: <Image
+                src="/images/gift.gif"
+                width={62}
+                height={62}
+                unoptimized={true}
+                alt="CheckIn"
+            />,
         Title: "Check-in",
         path: "/moon/checkin"
     },
     {
-        Icon: <img src="/images/ranking.gif" className="w-16 h-16"/>,
+        Icon: <Image
+                src="/images/ranking.gif"
+                width={62}
+                height={62}
+                unoptimized={true}
+                alt="Ranking"
+            />,
         Title: "Ranking",
         path: "/moon/ranking"
     }   
