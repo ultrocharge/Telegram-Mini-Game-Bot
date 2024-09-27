@@ -3,13 +3,28 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
+import Script from "next/script";
 export default function Home() { 
 
   const router = useRouter();
   useEffect(() => {
+       if (typeof window !== 'undefined') {  
+      if (window.Telegram && window.Telegram.WebApp) {  
+        const initDataString = window.Telegram.WebApp.initData;  
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+    
+        tg.BackButton.show();
+        if (initDataString) {  
+          const params = new URLSearchParams(initDataString);  
+        }  
+      } else {  
+        console.error('Telegram Web App SDK is not available');  
+      }  
+    }  
     const timer = setTimeout(() => {  
       router.push('/moon');  
-    }, 3000);  
+    }, 5000);  
 
     // Cleanup timer on component unmount  
     return () => clearTimeout(timer);  
@@ -17,12 +32,19 @@ export default function Home() {
 
   return (  
     <div className="relative h-screen flex flex-col items-center justify-center max-w-sm mx-auto">
+      <Script  
+        src="https://telegram.org/js/telegram-web-app.js"  
+        strategy="afterInteractive"  
+        onLoad={() => {  
+          console.log("Telegram Web App SDK loaded");  
+        }}  
+      />  
       <div className="flex flex-col items-center justify-center mb-20 bg-center text-white px-5">  
         <div className="mb-12 w-52 h-52 image-with-shadow">
           <Image
               src="/images/avatar.png"
-              width={250}
-              height={250}
+              width={200}
+              height={200}
               alt="Yello Moon"
           />,
         </div>
