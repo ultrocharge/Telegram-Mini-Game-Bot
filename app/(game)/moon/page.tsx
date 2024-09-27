@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { FaMoon } from "react-icons/fa";
 import Link from "next/link";
+import Script from "next/script";
 const footer = [
     {
         Icon:<Image
@@ -42,19 +43,20 @@ const footer = [
     }   
 ]
 
-useEffect(() => {
-    const tg = window.Telegram.WebApp;
-    tg.expand(); // Optional: Expand the web app to full screen
+useEffect(() => {  
+    if (typeof window !== 'undefined') {  
+      if (window.Telegram && window.Telegram.WebApp) {  
+        const tg = window.Telegram.WebApp;  
 
-    // Show the back button on the new page
-    tg.BackButton.show();
+        // Show the back button  
+        tg.BackButton.show();  
 
-    const handleBackButtonClick = () => {  
-        window.history.back(); // Go back to the previous page  
-      };  
-
-      // Add an event listener to the button (if applicable)  
-    tg.BackButton.onClick = handleBackButtonClick;
+        // Set the onClick event handler  
+        tg.BackButton.onClick(() => {  
+          window.history.back(); // Go back to the previous page  
+        });
+      }  
+    }  
   }, []);
 
 export default function Moon() {
@@ -63,6 +65,13 @@ export default function Moon() {
 
     return (
         <div className="max-w-sm mx-auto flex flex-col gap-5">
+            <Script  
+                src="https://telegram.org/js/telegram-web-app.js"  
+                strategy="afterInteractive"  
+                onLoad={() => {  
+                console.log("Telegram Web App SDK loaded");  
+                }}  
+            />  
             <div className="w-full flex flex-row gap-3 border-b border-stone-700 py-3 justify-between px-4">
                 <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-2 bg-yellow-500 bg-opacity-20">
                     <div className="flex items-center">
