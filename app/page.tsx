@@ -10,14 +10,9 @@ export default function Home() {
   useEffect(() => {
        if (typeof window !== 'undefined') {  
       if (window.Telegram && window.Telegram.WebApp) {  
-        const initDataString = window.Telegram.WebApp.initData;  
         const tg = window.Telegram.WebApp;
         tg.expand();
-    
         tg.BackButton.show();
-        if (initDataString) {  
-          const params = new URLSearchParams(initDataString);  
-        }  
       } else {  
         console.error('Telegram Web App SDK is not available');  
       }  
