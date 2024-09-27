@@ -59,11 +59,11 @@ export default function Ranking() {
                 </div>
 
                 <div className="flex flex-row gap-3 w-full justify-start items-center gradient-border text-white font-extrabold p-3" style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                    <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] flex justify-center items-center">
+                    <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
                         {username.slice(0,2)}
                     </div>
                     <div className="flex flex-col gap-1">
-                        <div className="text-lg font-extrabold">
+                        <div className="text-base font-extrabold">
                             {username}
                         </div>
                         <div className="flex flex-row gap-2">
@@ -88,7 +88,7 @@ export default function Ranking() {
             </div>
 
             <div className="w-full p-4">
-                <h1 className="text-lg font-extrabold text-white mb-4" style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                <h1 className="text-base font-extrabold text-white mb-4" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                     Holder :
                 </h1>
 
@@ -132,11 +132,11 @@ export default function Ranking() {
                             : 
                             null 
                             }
-                            <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] flex justify-center items-center">
+                            <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
                                 {item.username.slice(0,2)}
                             </div>
                             <div className="flex flex-col gap-1">
-                                <div className="text-lg font-extrabold">
+                                <div className="text-base font-extrabold">
                                     {item.username}
                                 </div>
                                 <div className="flex flex-row gap-2">
