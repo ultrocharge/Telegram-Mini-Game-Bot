@@ -16,7 +16,7 @@ export default function Home() {
   },[router])
 
   return (  
-    <div className="relative h-screen flex flex-col items-center justify-center">
+    <div className="relative h-screen flex flex-col items-center justify-center max-w-sm mx-auto">
       <div className="flex flex-col items-center justify-center mb-20 bg-center text-white px-5">  
         <div className="mb-12 w-52 h-52 image-with-shadow">
           <Image
