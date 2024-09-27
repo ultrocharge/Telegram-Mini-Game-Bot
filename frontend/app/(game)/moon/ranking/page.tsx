@@ -42,8 +42,8 @@ export default function Ranking() {
     const count = 0
     const ranking = '99+'
     return (
-        <div>
-            <div className="flex flex-col justify-center items-center gap-3 ring-1 ring-stone-700 p-4 bg-gray-600 bg-opacity-50">
+        <div className="w-full max-w-sm mx-auto">
+            <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between">
                 <div className="flex flex-row gap-2 items-center justify-center">
                     <div>
                         <Image
