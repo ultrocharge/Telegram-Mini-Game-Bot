@@ -6,7 +6,7 @@ export default function CheckIn() {
     return (
         <div className="flex flex-col justify-between h-screen max-w-sm mx-auto">
             <div>
-                <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between items-center">
+                <div className="w-full flex flex-col gap-2 border-b border-stone-700 p-4 justify-between items-center">
                     <Image
                         src="/images/checkin.png"
                         width={35}
@@ -16,7 +16,7 @@ export default function CheckIn() {
                     <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 10px 50px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
                         Daily Check-In
                     </div>
-                    <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 50px yellow"}} className="text-base font-bold text-white text-center">
+                    <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 50px yellow"}} className="text-[15px] font-bold text-white text-center">
                         Check-in every day <span style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "-50px 100px 50px yellow"}} className="text-base font-bold text-yellow-300 text-opacity-90">(00:00 AM UTC)</span> to get
                     </div>
 
