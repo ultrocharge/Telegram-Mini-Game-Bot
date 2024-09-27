@@ -1,8 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Replace with your bot token
-const token = '7679497504:AAHrWD9bpkFNlE7TFVxe4J7nJtWqzR88Dyk';
-
+const token = '7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ';
 // Create a new bot
 const bot = new TelegramBot(token, {polling: true});
 
@@ -12,7 +11,6 @@ bot.getMe().then((botInfo) => {
     console.log('Bot is connected successfully!');
     botFirstName = botInfo.first_name
 });
-
 
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id
