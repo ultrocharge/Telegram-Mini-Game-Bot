@@ -7,7 +7,7 @@ import { FaMoon } from "react-icons/fa";
 import Link from "next/link";
 import Script from "next/script";
 
-const footer = [
+const moon = [
     {
         Icon:<Image
                 src="/images/spin.gif"
@@ -87,7 +87,7 @@ export default function Moon() {
                         src="/images/avatar.png"
                         width={20}
                         height={20}
-                        alt="this is bot app avatar"
+                        alt="Avatar"
                     />
                 </div>
                 <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="font-extrabold text-yellow-300 text-opacity-90 mb-1">
@@ -109,7 +109,7 @@ export default function Moon() {
                             src="/images/moon.png"
                             width={32}
                             height={32}
-                            alt="this is bot app avatar"
+                            alt="Moon"
                         />
                     </div>
                     <div>Meme on Eclispe</div>
@@ -120,7 +120,7 @@ export default function Moon() {
                             src="/images/avatar.png"
                             width={32}
                             height={32}
-                            alt="this is bot app avatar"
+                            alt="Avatar"
                         />
                     </div>
                     <div>Mini Apps</div>
@@ -131,7 +131,7 @@ export default function Moon() {
                             src="/images/avatar.png"
                             width={32}
                             height={32}
-                            alt="this is bot app avatar"
+                            alt="Avatar"
                         />
                     </div>
                     <div>Meme on Eclispe</div>
@@ -150,7 +150,7 @@ export default function Moon() {
                 }}  
             /> 
             <div className="w-full flex flex-row gap-3 border-b border-stone-700 py-3 justify-between px-4">
-                <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-2 bg-yellow-500 bg-opacity-20">
+                <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-2 bg-yellow-300 bg-opacity-20">
                     <div className="flex items-center">
                         <FaMoon size={25} style={{opacity: '70%'}} color="yellow"/>
                     </div>
@@ -158,13 +158,13 @@ export default function Moon() {
                         {count}
                    </div>
                 </div>
-                <div className="flex flex-1 justify-center gap-3 ring-1 ring-stone-700 rounded-2xl py-2 bg-gray-600 bg-opacity-50">
+                <div className="flex flex-1 justify-center gap-3 ring-1 ring-stone-700 rounded-2xl py-2 bg-gray-400 bg-opacity-20">
                     <div className="flex items-center">
                         <Image
                             src="/images/avatar.png"
                             width={25}
                             height={25}
-                            alt="this is bot app avatar"
+                            alt="Avatar"
                         />
                     </div>
                     <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-white flex items-start">
@@ -182,7 +182,7 @@ export default function Moon() {
                                     src="/images/moon.png"
                                     width={25}
                                     height={25}
-                                    alt="this is bot app avatar"
+                                    alt="Moon"
                                 />
                             </div>
                             <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 60px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90 mb-1">
@@ -199,12 +199,12 @@ export default function Moon() {
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-between">
-                    {footer.map((item, index) => (
+                <div className="grid grid-cols-3 w-full gap-2 px-4">
+                    {moon.map((item, index) => (
                         <Link key={index} href={item.path}>
-                            <div className="ring-1 ring-yellow-400 border-t-2 border-t-yellow-400 w-28 h-28 text-xs font-extrabold flex-col p-1 rounded-lg flex justify-center items-center bg-gray-600 bg-opacity-30" style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                            <div className="ring-1 flex-shrink-0  col-span-1 ring-yellow-400 border-t-2 border-t-yellow-400 text-xs font-extrabold flex-col p-1 rounded-lg flex justify-center items-center bg-gray-600 bg-opacity-30" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                                 {item.Icon}
-                                <div className={`text-white text-base font-extrabold shadow-lg ${item.Title === 'Moon Spin' ? 'mt-2' : ''}`} style={{ textShadow: "1px 1px 60px yellow"}}>
+                                <div className={`text-white text-nowrap text-base font-extrabold shadow-lg ${item.Title === 'Moon Spin' ? 'mt-2' : ''}`} style={{ textShadow: "1px 1px 60px yellow"}}>
                                     {item.Title}
                                 </div>
                             </div>
