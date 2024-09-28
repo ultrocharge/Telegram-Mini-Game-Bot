@@ -26,6 +26,14 @@ body {
   }
 }
 
+.will-change-text {  
+  will-change: opacity, transform; /* Optimizes rendering */  
+  -webkit-font-smoothing: antialiased; /* Make text smoother on WebKit browsers */  
+  -moz-osx-font-smoothing: grayscale; /* Smooth text on macOS */  
+  transform: translateZ(0); /* Force hardware acceleration */  
+  text-rendering: optimizeLegibility; /* Improve text rendering */  
+}  
+
 .image-with-shadow {  
   animation: shadowPulsate 3s infinite;  
 }  

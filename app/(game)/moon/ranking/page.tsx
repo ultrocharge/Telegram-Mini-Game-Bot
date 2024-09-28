@@ -1,5 +1,6 @@
+"use client"
 import Image from "next/image";
-
+import { motion } from 'framer-motion'; 
 const rankingList = [
     {
         username: 'Rokibul',
@@ -62,125 +63,139 @@ export default function Ranking() {
     const count = 0
     const ranking = '99+'
     return (
-        <div className="w-full max-w-sm mx-auto relative">
-            <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between sticky top-0 bg-[#1B1B1B]">
-                <div className="flex flex-row gap-2 items-center justify-center">
-                    <div>
-                        <Image
-                            src="/images/moon.png"
-                            width={25}
-                            height={25}
-                            alt="Moon"
-                        />
-                    </div>
-                    <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 60px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
-                        Leaderboard
-                    </div>
-                </div>
-
-                <div className="flex flex-row gap-3 w-full justify-start items-center gradient-border text-white font-extrabold p-3" style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                    <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
-                        {username.slice(0,2)}
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <div className="text-base font-extrabold">
-                            {username}
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                delay: 0.15,
+            }}
+            viewport={{
+                once: true,
+            }}
+        >
+            <div className="w-full max-w-sm mx-auto relative">
+                <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between sticky top-0 bg-[#1B1B1B]">
+                    <div className="flex flex-row gap-2 items-center justify-center">
+                        <div>
+                            <Image
+                                src="/images/moon.png"
+                                width={25}
+                                height={25}
+                                alt="Moon"
+                            />
                         </div>
-                        <div className="flex flex-row gap-2">
-                            <div className="flex flex-row gap-1">
-                                <div className="flex items-center">
-                                    <Image
-                                        src="/images/avatar.png"
-                                        width={16}
-                                        height={16}
-                                        alt="Avatar"
-                                    />
-                                </div>
-                                <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
-                                    {count}
-                                </div>
-                            </div>
-                            <div className="text-xs">|</div>
-                            <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {ranking}</div>
+                        <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 60px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
+                            Leaderboard
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div className="w-full p-4">
-                <h1 className="text-base font-extrabold text-white mb-4" style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                    Holder :
-                </h1>
-
-                <div className="flex flex-col gap-3">
-                        
-                    {rankingList.map((item, index) => (
-                        <div key={index} className="flex flex-row gap-3 w-full justify-start items-center text-white font-extrabold p-3 bg-yellow-500 bg-opacity-20 rounded-lg  " style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                            {item.ranking === 1 ? <Image
-                                src="/images/gold.png"
-                                width={18}
-                                height={18}
-                                alt="GoldMedal"
-                            /> 
-                            : 
-                            null 
-                            }
-                            {item.ranking === 2 ? <Image
-                                src="/images/silver.png"
-                                width={18}
-                                height={18}
-                                alt="Silver Medal"
-                            /> 
-                            : 
-                            null 
-                            }
-                            {item.ranking === 3 ? <Image
-                                src="/images/brozen.png"
-                                width={18}
-                                height={18}
-                                alt="Brozen Medal"
-                            /> 
-                            : 
-                            null 
-                            }
-                            {item.ranking > 3 ? <Image
-                                src="/images/platinum.png"
-                                width={18}
-                                height={18}
-                                alt="Platinum Medal"
-                            /> 
-                            : 
-                            null 
-                            }
-                            <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
-                                {item.username.slice(0,2)}
+                    <div className="flex flex-row gap-3 w-full justify-start items-center gradient-border text-white font-extrabold p-3" style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                        <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
+                            {username.slice(0,2)}
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <div className="text-base font-extrabold">
+                                {username}
                             </div>
-                            <div className="flex flex-col gap-1">
-                                <div className="text-base font-extrabold">
-                                    {item.username}
-                                </div>
-                                <div className="flex flex-row gap-2">
-                                    <div className="flex flex-row gap-1">
-                                        <div className="flex items-center">
-                                            <Image
-                                                src="/images/avatar.png"
-                                                width={16}
-                                                height={16}
-                                                alt="Avatar"
-                                            />
-                                        </div>
-                                        <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
-                                            {item.count}
-                                        </div>
+                            <div className="flex flex-row gap-2">
+                                <div className="flex flex-row gap-1">
+                                    <div className="flex items-center">
+                                        <Image
+                                            src="/images/avatar.png"
+                                            width={16}
+                                            height={16}
+                                            alt="Avatar"
+                                        />
                                     </div>
-                                    <div className="text-xs">|</div>
-                                    <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {item.ranking}</div>
+                                    <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
+                                        {count}
+                                    </div>
                                 </div>
+                                <div className="text-xs">|</div>
+                                <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {ranking}</div>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <div className="w-full p-4">
+                    <h1 className="text-base font-extrabold text-white mb-4" style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                        Holder :
+                    </h1>
+
+                    <div className="flex flex-col gap-3">
+                            
+                        {rankingList.map((item, index) => (
+                            <div key={index} className="flex flex-row gap-3 w-full justify-start items-center text-white font-extrabold p-3 bg-yellow-500 bg-opacity-20 rounded-lg  " style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                                {item.ranking === 1 ? <Image
+                                    src="/images/gold.png"
+                                    width={18}
+                                    height={18}
+                                    alt="GoldMedal"
+                                /> 
+                                : 
+                                null 
+                                }
+                                {item.ranking === 2 ? <Image
+                                    src="/images/silver.png"
+                                    width={18}
+                                    height={18}
+                                    alt="Silver Medal"
+                                /> 
+                                : 
+                                null 
+                                }
+                                {item.ranking === 3 ? <Image
+                                    src="/images/brozen.png"
+                                    width={18}
+                                    height={18}
+                                    alt="Brozen Medal"
+                                /> 
+                                : 
+                                null 
+                                }
+                                {item.ranking > 3 ? <Image
+                                    src="/images/platinum.png"
+                                    width={18}
+                                    height={18}
+                                    alt="Platinum Medal"
+                                /> 
+                                : 
+                                null 
+                                }
+                                <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
+                                    {item.username.slice(0,2)}
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <div className="text-base font-extrabold">
+                                        {item.username}
+                                    </div>
+                                    <div className="flex flex-row gap-2">
+                                        <div className="flex flex-row gap-1">
+                                            <div className="flex items-center">
+                                                <Image
+                                                    src="/images/avatar.png"
+                                                    width={16}
+                                                    height={16}
+                                                    alt="Avatar"
+                                                />
+                                            </div>
+                                            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
+                                                {item.count}
+                                            </div>
+                                        </div>
+                                        <div className="text-xs">|</div>
+                                        <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {item.ranking}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>  
+        </motion.div>
     )
 }
