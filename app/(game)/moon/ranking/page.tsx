@@ -36,21 +36,41 @@ const rankingList = [
         ranking: 4,
         count : 10
     },
+    {
+        username: 'Daniel Albes',
+        ranking: 4,
+        count : 10
+    },
+    {
+        username: 'Daniel Albes',
+        ranking: 4,
+        count : 10
+    },
+    {
+        username: 'Daniel Albes',
+        ranking: 4,
+        count : 10
+    },
+    {
+        username: 'Daniel Albes',
+        ranking: 4,
+        count : 10
+    },
 ]
 export default function Ranking() {
     const username = 'full_stack_dev'
     const count = 0
     const ranking = '99+'
     return (
-        <div className="w-full max-w-sm mx-auto">
-            <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between">
+        <div className="w-full max-w-sm mx-auto relative">
+            <div className="w-full flex flex-col gap-3 border-b border-stone-700 p-4 justify-between sticky top-0 bg-[#1B1B1B]">
                 <div className="flex flex-row gap-2 items-center justify-center">
                     <div>
                         <Image
                             src="/images/moon.png"
                             width={25}
                             height={25}
-                            alt="this is bot app avatar"
+                            alt="Moon"
                         />
                     </div>
                     <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px 1px 60px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
@@ -73,7 +93,7 @@ export default function Ranking() {
                                         src="/images/avatar.png"
                                         width={16}
                                         height={16}
-                                        alt="this is bot app avatar"
+                                        alt="Avatar"
                                     />
                                 </div>
                                 <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
@@ -146,7 +166,7 @@ export default function Ranking() {
                                                 src="/images/avatar.png"
                                                 width={16}
                                                 height={16}
-                                                alt="this is bot app avatar"
+                                                alt="Avatar"
                                             />
                                         </div>
                                         <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
