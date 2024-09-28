@@ -53,7 +53,7 @@ export default function Tasks() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-1 justify-center gap-3 ring-1 ring-stone-700 rounded-2xl py-1 bg-gray-600 bg-opacity-20" style={{boxShadow:'-50px 1px 200px yellow'}}>
+                    <div className="flex flex-1 justify-center gap-3 border border-solid border-stone-500 rounded-2xl py-1 bg-gray-400 bg-opacity-20" style={{boxShadow:'-50px 1px 200px yellow'}}>
                         <div className="flex items-center gap-2">
                             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-2xl font-extrabold text-white flex">
                                 +
@@ -78,7 +78,6 @@ export default function Tasks() {
                 </h1>
 
                 <div className="flex flex-col gap-3">
-                        
                     {taskList.map((item, index) => (
                         <div key={index} className="flex flex-row w-full justify-between items-center text-white font-extrabold p-3 bg-yellow-500 bg-opacity-20 rounded-lg" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                             <div className="flex flex-row gap-3 items-center" >
