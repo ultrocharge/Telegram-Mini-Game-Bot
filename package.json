@@ -1,18 +1,22 @@
 {
   "name": "telegram",
   "version": "1.0.0",
-  "main": "bot.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
     "node-fetch": "^3.3.2",
     "node-telegram-bot-api": "^0.66.0",
+    "nodemon": "^3.1.7",
     "telegraf": "^4.16.3"
   }
 }
