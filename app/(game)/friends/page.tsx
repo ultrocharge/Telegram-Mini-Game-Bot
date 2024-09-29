@@ -1,87 +1,65 @@
-'use client'
-import Image from "next/image"
-import { FaMoon } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { useState } from "react";
-import { motion } from 'framer-motion'; 
-const taskList = [
-    {
-        invite: 3,
-        count : 2000
-    },
-    {
-        invite: 5,
-        count : 5000
-    },
-    {
-        invite: 10,
-        count : 15000
-    },
-    {
-        invite: 20,
-        count : 25000
-    }
-]
-export default function Friends() {
-    const count = 0
-    const [isCopied, setIsCopied] = useState(false);
-    const [movingPage, setMovingPage] = useState(true)
-    const [visible, setVisible] = useState(false)
-    const handleCopy = async () => {
-        try {
-            await navigator.clipboard.writeText('https://t.me/moverzdegen_bot');
-            setIsCopied(true);
-            unCopied();
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
-    };
+'use client'  
+import Image from "next/image"  
+import { FaMoon } from "react-icons/fa";  
+import { MdEmail } from "react-icons/md";  
+import { AiOutlineExclamationCircle } from "react-icons/ai";  
+import { useState } from "react";  
+import { motion } from 'framer-motion';   
 
-    const unCopied = () => {
-        setTimeout(() => {setIsCopied(false)},2000)
-    }
+const taskList = [  
+    { invite: 3, count: 2000 },  
+    { invite: 5, count: 5000 },  
+    { invite: 10, count: 15000 },  
+    { invite: 20, count: 25000 }  
+];  
 
-    const refs = (
-        <div className="w-full px-4 flex-col flex gap-5 py-4 overflow-scroll h-[53.5%] sm:h-auto">
-            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-lg font-extrabold text-white text-center">You don't have referrals 😭</div>
-            <div className="bg-stone-500 rounded-full w-full h-2" />
-        </div>
-    )
+export default function Friends() {  
+    const count = 0; // Initialize count  
+    const [isCopied, setIsCopied] = useState(false);  
+    const [movingPage, setMovingPage] = useState(true);  
+    const [visible, setVisible] = useState(false);  
 
-    const earns = (
-        <div className="w-full px-4 flex-col flex gap-5 py-4 h-[53.5%] sm:h-auto overflow-scroll sm:overflow-auto">
-            <div className="flex flex-row gap-3">
-                <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-1 bg-yellow-500 bg-opacity-10">
-                    <div className="flex items-center gap-2">
-                        <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-2xl font-extrabold text-yellow-400 text-opacity-80 flex">
-                            +
-                        </div>
-                        <FaMoon size={20} style={{opacity: '70%'}} color="yellow"/>
-                        <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-yellow-400 text-opacity-80 flex">
-                            {count}
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-1 justify-center gap-3 border border-solid border-stone-500 rounded-2xl py-1 bg-gray-400 bg-opacity-20">
-                    <div className="flex items-center gap-2">
-                        <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-2xl font-extrabold text-white flex">
-                            +
-                        </div>
-                        <Image
-                            src="/images/spinicon.png"
-                            width={20}
-                            height={20}
-                            alt="Spin Icon"
-                        />
-                        <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-white flex items-start">
-                            {count}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-col gap-3">
-                {taskList.map((item, index) => (
+    const handleCopy = async () => {  
+        try {  
+            await navigator.clipboard.writeText('https://t.me/moverzdegen_bot');  
+            setIsCopied(true);  
+            unCopied();  
+        } catch (err) {  
+            console.error('Failed to copy: ', err);  
+        }  
+    };  
+
+    const unCopied = () => {  
+        setTimeout(() => {setIsCopied(false)}, 2000);  
+    }  
+
+    const refs = (  
+        <div className="w-full px-4 flex-col flex gap-5 py-4 overflow-scroll h-[53.5%] sm:h-auto">  
+            <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-lg font-extrabold text-white text-center">You don&apos;t have referrals 😭</div>  
+            <div className="bg-stone-500 rounded-full w-full h-2" />  
+        </div>  
+    );  
+
+    const earns = (  
+        <div className="w-full px-4 flex-col flex gap-5 py-4 h-[53.5%] sm:h-auto overflow-scroll sm:overflow-auto">  
+            <div className="flex flex-row gap-3">  
+                <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-1 bg-yellow-500 bg-opacity-10">  
+                    <div className="flex items-center gap-2">  
+                        <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-2xl font-extrabold text-yellow-400 text-opacity-80 flex">+</div>  
+                        <FaMoon size={20} style={{ opacity: '70%' }} color="yellow"/>  
+                        <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-xl font-extrabold text-yellow-400 text-opacity-80 flex">{count}</div>  
+                    </div>  
+                </div>  
+                <div className="flex flex-1 justify-center gap-3 border border-solid border-stone-500 rounded-2xl py-1 bg-gray-400 bg-opacity-20">  
+                    <div className="flex items-center gap-2">  
+                        <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-2xl font-extrabold text-white flex">+</div>  
+                        <Image src="/images/spinicon.png" width={20} height={20} alt="Spin Icon" />  
+                        <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-xl font-extrabold text-white flex items-start">{count}</div>  
+                    </div>  
+                </div>  
+            </div>  
+            <div className="flex flex-col gap-3">  
+                {taskList.map((item, index) => (  
                     <div key={index} className="flex flex-col gap-2 w-full p-3 bg-yellow-500 bg-opacity-20 rounded-lg" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                         <div className="flex flex-row w-full justify-between items-center text-white font-extrabold">
                             <div className="flex flex-row gap-3 items-center" >
