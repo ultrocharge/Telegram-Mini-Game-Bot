@@ -27,6 +27,7 @@ export default function Friends() {
     const count = 0
     const [isCopied, setIsCopied] = useState(false);
     const [movingPage, setMovingPage] = useState(true)
+    const [visible, setVisible] = useState(false)
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText('https://t.me/moverzdegen_bot');
@@ -49,7 +50,7 @@ export default function Friends() {
     )
 
     const earns = (
-        <div className="w-full px-4 flex-col flex gap-5 py-4 overflow-scroll h-[53.5%] sm:h-auto">
+        <div className="w-full px-4 flex-col flex gap-5 py-4 h-[53.5%] sm:h-auto overflow-scroll sm:overflow-auto">
             <div className="flex flex-row gap-3">
                 <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-1 bg-yellow-500 bg-opacity-10">
                     <div className="flex items-center gap-2">
@@ -97,13 +98,52 @@ export default function Friends() {
                                     </div>
                                 </div>
                             </div>
-                            <button className="py-1 px-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center items-end text-white" disabled>Claim</button>
+                            <button className="py-1 px-3 rounded-full cursor-not-allowed bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center items-end text-white" >Claim</button>
                         </div>
                         <div className="bg-stone-500 rounded-full w-full h-2" />
                     </div>
                 ))}
             </div>
     </div>
+    )
+
+    const products = (
+        <div className="flex flex-col">
+            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-center text-xl font-extrabold text-yellow-300 text-opacity-90 mb-5">
+                You will receive
+            </div>
+            <div className="flex flex-col gap-4">
+                <div className="w-full rounded-xl py-2 px-3 flex gap-3 font-extrabold text-white justify-center items-center bg-green-300 bg-opacity-20" style={{ fontFamily: "'Brush Script MT', cursive", transform: "rotate(1deg)"}}>
+                    <div className="flex gap-1">15% of 🌙 <p className="text-yellow-300">points</p> earned by those <br></br> you invite</div>
+                </div>
+                <div className="w-full rounded-xl py-2 text-lg flex gap-3 font-extrabold text-white justify-center items-center bg-green-300 bg-opacity-20" style={{ fontFamily: "'Brush Script MT', cursive", transform: "rotate(-1deg)"}}>
+                    <div className="flex gap-3 justify-center">
+                        <div className="flex flex-row gap-1 items-center">
+                            <MdEmail color="yellow" style={{opacity: '70%'}} size={25}/>
+                            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-base font-bold text-white flex items-start">
+                                2 ref =
+                            </div>
+                        </div>
+                        <div className="flex flex-row gap-1 items-center">
+                            <Image
+                                src="/images/spinicon.png"
+                                width={22}
+                                height={22}
+                                alt="Spin Icon"
+                            />
+                            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-base font-bold text-white flex items-start">
+                                1 Spin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full rounded-xl py-2 text-lg flex gap-3 font-extrabold text-white justify-center items-center bg-green-300 bg-opacity-20" style={{ fontFamily: "'Brush Script MT', cursive", transform: "rotate(1deg)"}}>
+                    <div className="flex items-center gap-1">
+                        🌙 <p className="text-yellow-300">Points</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
     return (
         <motion.div
@@ -152,6 +192,7 @@ export default function Friends() {
                                     height={35}
                                     unoptimized={true}
                                     alt="CheckIn"
+                                    onClick={() => setVisible(true)}
                                 />
                             </div>
                         </div>
@@ -172,6 +213,19 @@ export default function Friends() {
                 </div>
 
                 {movingPage ? earns : refs}
+
+                <div className={`${visible ? 'flex' : 'hidden'} absolute top-0 left-0 w-full h-screen bg-gray-700 bg-opacity-45 justify-center items-center px-5`}>
+                    <div className="w-full flex flex-col rounded-lg bg-[#1B1B1B] p-5 border border-solid border-gray-400 border-opacity-20">
+                        <div className="flex justify-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="10" height="10" overflow="visible" stroke="white" strokeWidth="10" strokeLinecap="round" onClick={() => setVisible(false)}>
+                                <line x1="0" y1="0" x2="50" y2="50" />
+                                <line x1="50" y1="0" x2="0" y2="50" />
+                            </svg>
+                        </div>
+
+                        { products }
+                    </div>
+                </div>
             </div>
         </motion.div>
     )
