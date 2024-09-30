@@ -1,67 +1,26 @@
 "use client"
 import Image from "next/image";
 import { motion } from 'framer-motion'; 
-const rankingList = [
-    {
-        username: 'Rokibul',
-        ranking: 1,
-        count : 10
-    },
-    {
-        username: 'Sunni Danjuma Ali',
-        ranking: 2,
-        count : 30
-    },
-    {
-        username: 'Recehana',
-        ranking: 3,
-        count : 12
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-    {
-        username: 'Daniel Albes',
-        ranking: 4,
-        count : 10
-    },
-]
+import { useEffect, useState } from "react";
+import axios from 'axios'
+
+interface BotData {
+    username: string,
+    star : number,
+    coin: number
+}
 export default function Ranking() {
     const username = 'full_stack_dev'
     const count = 0
     const ranking = '99+'
+    const [dataSource, setDataSource] = useState<BotData[]>([])
+
+    useEffect(() => {
+
+        axios.get('http://localhost:5000/moverz/show')
+            .then(res => setDataSource(res.data))
+            .catch(err => console.log(err))
+    },[dataSource])
     return (
         <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -128,9 +87,9 @@ export default function Ranking() {
 
                     <div className="flex flex-col gap-3">
                             
-                        {rankingList.map((item, index) => (
+                        {dataSource.map((item, index) => (
                             <div key={index} className="flex flex-row gap-3 w-full justify-start items-center text-white font-extrabold p-3 bg-yellow-500 bg-opacity-20 rounded-lg  " style={{ fontFamily: "'Brush Script MT', cursive"}}>
-                                {item.ranking === 1 ? <Image
+                                {index === 0 ? <Image
                                     src="/images/gold.png"
                                     width={18}
                                     height={18}
@@ -139,7 +98,7 @@ export default function Ranking() {
                                 : 
                                 null 
                                 }
-                                {item.ranking === 2 ? <Image
+                                {index === 1 ? <Image
                                     src="/images/silver.png"
                                     width={18}
                                     height={18}
@@ -148,7 +107,7 @@ export default function Ranking() {
                                 : 
                                 null 
                                 }
-                                {item.ranking === 3 ? <Image
+                                {index === 2 ? <Image
                                     src="/images/brozen.png"
                                     width={18}
                                     height={18}
@@ -157,7 +116,7 @@ export default function Ranking() {
                                 : 
                                 null 
                                 }
-                                {item.ranking > 3 ? <Image
+                                {index && index > 3 ? <Image
                                     src="/images/platinum.png"
                                     width={18}
                                     height={18}
@@ -167,11 +126,11 @@ export default function Ranking() {
                                 null 
                                 }
                                 <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
-                                    {item.username.slice(0,2)}
+                                    {item.username.slice(1,3)}
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <div className="text-base font-extrabold">
-                                        {item.username}
+                                        {item.username.substring(1)}
                                     </div>
                                     <div className="flex flex-row gap-2">
                                         <div className="flex flex-row gap-1">
@@ -184,11 +143,11 @@ export default function Ranking() {
                                                 />
                                             </div>
                                             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
-                                                {item.count}
+                                                {item.coin}
                                             </div>
                                         </div>
                                         <div className="text-xs">|</div>
-                                        <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {item.ranking}</div>
+                                        <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {index + 1}</div>
                                     </div>
                                 </div>
                             </div>

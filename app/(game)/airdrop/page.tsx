@@ -109,7 +109,7 @@ export default function Wallet() {
 
                     <div className="bg-yellow-800 bg-opacity-20 flex flex-col gap-5 rounded-lg justify-center items-center py-3">
                         <div style={{ fontFamily: "'Brush Script MT', cursive", textShadow: "1px -40px 70px yellow"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90">
-                            Leaderboard
+                            Portfolio
                         </div>
                         <div className="flex items-center gap-3">
                             <FaMoon size={20} style={{opacity: '70%'}} color="yellow"/>
