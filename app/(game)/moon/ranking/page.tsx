@@ -19,7 +19,6 @@ interface User {
 
 export default function Ranking() {
     const username = 'full_stack_dev_010'
-    const ranking = '99+'
     const [dataSource, setDataSource] = useState<BotData[]>([])
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 

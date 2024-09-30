@@ -1,7 +1,11 @@
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
 import { FaMoon } from "react-icons/fa";
-export default function Alert(props:any) {
+interface AlertProps {  
+    count: number | string; // You can adjust this based on what type `count` is expected to be  
+    day?: number; // Assuming day is always expected to be a number  
+}  
+export default function Alert(props:AlertProps) {
     return (
         <div className="max-w-sm mx-auto absolute px-5 top-5 left-0 bg-yellow-500 rounded-lg text-white font-extrabold py-2 w-full flex gap-2 text-2xl items-center" style={{ fontFamily: "'Brush Script MT', cursive"}}>
             <FaCheck size={30} color="green"/>

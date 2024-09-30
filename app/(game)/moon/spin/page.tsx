@@ -2,7 +2,7 @@
 import { MdEmail } from "react-icons/md";
 import Image from "next/image";
 import { motion } from 'framer-motion'; 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Prize from "@/components/Prize";
 
@@ -48,20 +48,20 @@ export default function Spin() {
         }  
     }, [currentUser]);
 
-    const addSpin = async () => {
-        if(currentUser) {
+    const addSpin = useCallback(async () => {  
+        if (currentUser) {  
             const data = {  
-                username: currentUser.username,
-                spin: currentUser.spin + 1,
-                star: currentUser.star,
-                coin: currentUser.coin,
-                spinDate: new Date().toUTCString()
-            }; 
+                username: currentUser.username,  
+                spin: currentUser.spin + 1,  
+                star: currentUser.star,  
+                coin: currentUser.coin,  
+                spinDate: new Date().toUTCString()  
+            };   
             await axios.post('http://localhost:5000/moverz/add/spin', data)  
-            .then(res => console.log(res.data))  
-            .catch(err => console.error(err))
-          }
-    }
+                .then(res => console.log(res.data))  
+                .catch(err => console.error(err));  
+        }  
+    }, [currentUser]);
 
     const spinWheel = () => {
         if(currentUser?.spin !== 0) {    
@@ -122,7 +122,7 @@ export default function Spin() {
                         spinDate: new Date().toUTCString()
                     }; 
                     await axios.post('http://localhost:5000/moverz/add/spin', data)  
-                    .then(res => {
+                    .then(() => {
                         setStar(true)
                         setValue(star)
                         setTimeout(() => {setStar(false)}, 3000)
@@ -138,7 +138,7 @@ export default function Spin() {
                         spinDate: new Date().toUTCString()
                     }; 
                     axios.post('http://localhost:5000/moverz/add/spin', data)  
-                    .then(res => {
+                    .then(() => {
                         setCoin(true)
                         setValue(coin)
                         setTimeout(() => {setCoin(false)}, 3000)
@@ -154,7 +154,7 @@ export default function Spin() {
                         spinDate: new Date().toUTCString()
                     }; 
                     axios.post('http://localhost:5000/moverz/add/spin', data)  
-                    .then(res => {
+                    .then(() => {
                         setSpin(true)
                         setValue(spin)
                         setTimeout(() => {setSpin(false)}, 3000)
