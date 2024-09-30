@@ -54,7 +54,7 @@ export default function Wallet() {
     const walletConnect = (
         <div className="flex flex-col justify-center gap-2 items-center">
             <Image 
-                src="/images/coin.png"
+                src="/images/eclipse.png"
                 width={100}
                 height={100}
                 alt="Coin"
@@ -87,7 +87,7 @@ export default function Wallet() {
                 once: true,
             }}
         >
-            <div className="max-w-sm mx-auto">
+            <div className="max-w-sm mx-auto relative">
                 <div className="w-full flex flex-col gap-5 border-b border-stone-700 py-5 px-4 bg-[#1B1B1B] sticky top-0 left-0 mb-10">
                     <div className="flex flex-row gap-3 justify-between">
                         <div className="flex gap-3 justify-center">
@@ -105,7 +105,7 @@ export default function Wallet() {
                         </div>
                         <div className="flex items-center gap-2 cursor-pointer justify-center rounded-2xl py-1 px-3 bg-yellow-500 bg-opacity-20" onClick={() => open('walletConnect')}>
                             <Image
-                                src="/images/spinicon.png"
+                                src="/images/eclipse.png"
                                 width={20}
                                 height={20}
                                 alt="Spin Icon"
@@ -158,7 +158,7 @@ export default function Wallet() {
 
                 <div className={`${visible ? 'flex' : 'hidden'} absolute top-0 left-0 w-full h-screen bg-gray-700 bg-opacity-45 justify-center items-center px-5`}>
                     <div className="w-full flex flex-col rounded-lg bg-[#1B1B1B] p-5 border border-solid border-gray-400 border-opacity-20">
-                        <div className="flex justify-end">
+                        <div className="flex justify-end cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="10" height="10" overflow="visible" stroke="white" strokeWidth="10" strokeLinecap="round" onClick={() => setVisible(false)}>
                                 <line x1="0" y1="0" x2="50" y2="50" />
                                 <line x1="50" y1="0" x2="0" y2="50" />
