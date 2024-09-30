@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaMoon } from "react-icons/fa";
 import Link from "next/link";
-import Script from "next/script";
 import { motion } from 'framer-motion';  
-
+import axios from 'axios'
 const moon = [
     {
         Icon:<Image
@@ -45,24 +44,21 @@ const moon = [
     }   
 ]
 
-
-
+interface User {
+    username: string,
+    star : number,
+    coin: number
+}
 export default function Moon() {
-    const count = 0;
-    const username = "MoverzBot"
+    const username = "full_stack_dev_010"
     const [visible, setVisible] = useState(false)
     const [currentTitle, setCurrentTitle] = useState('')
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
     useEffect(() => {  
-        if (typeof window !== 'undefined') {  
-            if (window.Telegram && window.Telegram.WebApp) {  
-                const tg = window.Telegram.WebApp;
-                tg.expand();
-                tg.BackButton.show();
-            } else {  
-                console.error('Telegram Web App SDK is not available');  
-            }  
-        }  
-    }, []);
+        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            .then(res => setCurrentUser(res.data))
+            .catch(err => console.log(err))
+    }, [currentUser]);
 
     const open = (title: string) => {
         setVisible(true);
@@ -157,20 +153,13 @@ export default function Moon() {
             }}
         >
             <div className="max-w-sm mx-auto flex flex-col gap-5 relative">
-                <Script  
-                    src="https://telegram.org/js/telegram-web-app.js"  
-                    strategy="afterInteractive"  
-                    onLoad={() => {  
-                    console.log("Telegram Web App SDK loaded");  
-                    }}  
-                /> 
                 <div className="w-full flex flex-row gap-3 border-b border-stone-700 py-3 justify-between px-4">
                     <div className="flex flex-1 ring-1 gap-3 justify-center ring-yellow-500 ring-opacity-40 rounded-2xl py-2 bg-yellow-300 bg-opacity-20">
                         <div className="flex items-center">
                             <FaMoon size={25} style={{opacity: '70%'}} color="yellow"/>
                         </div>
                         <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-yellow-400 text-opacity-80 flex items-start">
-                            {count}
+                            {currentUser?.star}
                     </div>
                     </div>
                     <div className="flex flex-1 justify-center gap-3 ring-1 ring-stone-700 rounded-2xl py-2 bg-gray-400 bg-opacity-20">
@@ -183,7 +172,7 @@ export default function Moon() {
                             />
                         </div>
                         <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-white flex items-start">
-                            {count}
+                            {currentUser?.coin}
                     </div>
                     </div>
                 </div>
@@ -206,7 +195,7 @@ export default function Moon() {
                             </div>
                             <div className="text-white">|</div>
                             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-base font-semibold text-white flex items-start">
-                                {username}
+                                {currentUser?.username}
                             </div>
                         </div>
                         <div className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-full bg-black image-with-shadow-icon" onClick={() => open('points')}>
