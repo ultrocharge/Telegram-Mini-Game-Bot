@@ -1,5 +1,6 @@
 const moverzbot = () => {
     const TelegramBot = require('node-telegram-bot-api');
+    const axios = require('axios')
     // Replace with your bot token
     const token = '7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ';
     // Create a new bot
@@ -15,7 +16,11 @@ const moverzbot = () => {
     bot.onText(/\/start/, (msg) => {
         const chatId = msg.chat.id
         const username = msg.from.username ? `@${msg.from.username}` : msg.from.first_name;
-    
+
+        axios.post('http://localhost:5000/moverz/add', {username})
+            .then(res => res.json(res))
+            .catch(err => console.log(err))
+
         // Message template with the dynamic username
         const message = `
     Hey, <b>${username}</b>, Welcome to <b>${botFirstName}SVM!</b> 🌚
