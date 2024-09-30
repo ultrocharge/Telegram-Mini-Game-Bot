@@ -9,18 +9,37 @@ interface BotData {
     star : number,
     coin: number
 }
+
+interface User {
+    username: string,
+    star : number,
+    coin: number,
+    index: number
+}
+
 export default function Ranking() {
-    const username = 'full_stack_dev'
-    const count = 0
+    const username = 'full_stack_dev_010'
     const ranking = '99+'
     const [dataSource, setDataSource] = useState<BotData[]>([])
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     useEffect(() => {
-
         axios.get('http://localhost:5000/moverz/show')
             .then(res => setDataSource(res.data))
             .catch(err => console.log(err))
+
+        dataSource.map((item, index) => {
+            if (item.username === username) {
+                setCurrentUser({
+                    username: item.username,
+                    star: item.star,
+                    coin: item.coin,
+                    index: index + 1,
+                })
+            }
+        })
     },[dataSource])
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -53,11 +72,11 @@ export default function Ranking() {
 
                     <div className="flex flex-row gap-3 w-full justify-start items-center gradient-border text-white font-extrabold p-3" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                         <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
-                            {username.slice(0,2)}
+                            {currentUser?.username.slice(0,2)}
                         </div>
                         <div className="flex flex-col gap-1">
                             <div className="text-base font-extrabold">
-                                {username}
+                                {currentUser?.username}
                             </div>
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-row gap-1">
@@ -70,11 +89,11 @@ export default function Ranking() {
                                         />
                                     </div>
                                     <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-sm font-extrabold flex items-start text-yellow-300 text-opacity-90">
-                                        {count}
+                                        {currentUser?.coin}
                                     </div>
                                 </div>
                                 <div className="text-xs">|</div>
-                                <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {ranking}</div>
+                                <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {currentUser?.index}</div>
                             </div>
                         </div>
                     </div>
@@ -126,11 +145,11 @@ export default function Ranking() {
                                 null 
                                 }
                                 <div className="w-8 h-8 rounded-full bg-yellow-300 text-[#222] text-sm font-extrabold flex justify-center items-center">
-                                    {item.username.slice(1,3)}
+                                    {item.username.slice(0,2)}
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <div className="text-base font-extrabold">
-                                        {item.username.substring(1)}
+                                        {item.username}
                                     </div>
                                     <div className="flex flex-row gap-2">
                                         <div className="flex flex-row gap-1">
