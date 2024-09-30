@@ -4,24 +4,11 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
-interface BotData {
-    username: string,
-    star : number,
-    coin: number
-}
-
-interface User {
-    username: string,
-    star : number,
-    coin: number,
-    index: number
-}
-
 export default function Ranking() {
     const username = 'full_stack_dev_010'
-    const [dataSource, setDataSource] = useState<BotData[]>([])
+    const [dataSource, setDataSource] = useState<User[]>([])
     const [currentUser, setCurrentUser] = useState<User | null>(null)
-
+    const [ranking, setRanking] = useState(0)
     useEffect(() => {
         axios.get('http://localhost:5000/moverz/show')
             .then(res => setDataSource(res.data))
@@ -33,8 +20,13 @@ export default function Ranking() {
                     username: item.username,
                     star: item.star,
                     coin: item.coin,
-                    index: index + 1,
+                    spin: item.spin,
+                    spinDate: item.spinDate,
+                    week: item.week,
+                    day: item.day,
+                    date: item.date
                 })
+                setRanking(index + 1)
             }
         })
     },[dataSource])
@@ -92,7 +84,7 @@ export default function Ranking() {
                                     </div>
                                 </div>
                                 <div className="text-xs">|</div>
-                                <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {currentUser?.index}</div>
+                                <div className="text-sm font-extrabold flex items-start text-gray-300 text-opacity-90">Rank {ranking}</div>
                             </div>
                         </div>
                     </div>

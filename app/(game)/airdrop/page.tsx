@@ -6,7 +6,8 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { SiConvertio } from "react-icons/si";
 import { LuWarehouse } from "react-icons/lu";
 import { motion } from 'framer-motion'; 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 const airdrop = [
     {
         Icon: <SiConvertio color="yellow" size={45} className="opacity-80"/>,
@@ -23,9 +24,17 @@ const airdrop = [
 ]
 
 export default function Wallet() {
-    const username = 'moonmoverz'
+    const username = "full_stack_dev_010"
     const [visible, setVisible] = useState(false)
     const [currentTitle, setCurrentTitle] = useState('')
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
+
+    useEffect(() => {  
+        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            .then(res => setCurrentUser(res.data))
+            .catch(err => console.log(err))
+        }, [currentUser]);
+
     const convert = (
         <div className="flex flex-col justify-center gap-2 items-center">
             <Image 
@@ -89,8 +98,8 @@ export default function Wallet() {
                                     height={25}
                                     alt="Moon"
                                 />
-                                <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-yellow-400 mb-1 text-opacity-80 flex">
-                                    {username}
+                                <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-lg font-extrabold text-yellow-400 mb-1 text-opacity-80 flex">
+                                    {currentUser?.username}
                                 </div>
                             </div>
                         </div>

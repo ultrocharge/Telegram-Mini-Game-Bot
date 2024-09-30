@@ -44,11 +44,6 @@ const moon = [
     }   
 ]
 
-interface User {
-    username: string,
-    star : number,
-    coin: number
-}
 export default function Moon() {
     const username = "full_stack_dev_010"
     const [visible, setVisible] = useState(false)

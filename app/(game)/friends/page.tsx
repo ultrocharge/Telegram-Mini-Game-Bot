@@ -14,7 +14,7 @@ const taskList = [
 ];  
 
 export default function Friends() {  
-    const count = 0; // Initialize count  
+    const count = 0;
     const [isCopied, setIsCopied] = useState(false);  
     const [movingPage, setMovingPage] = useState(true);  
     const [visible, setVisible] = useState(false);  

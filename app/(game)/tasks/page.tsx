@@ -4,6 +4,8 @@ import Image from "next/image"
 import { FaMoon } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import { motion } from 'framer-motion'; 
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
 const taskList = [
     {
@@ -24,7 +26,14 @@ const taskList = [
 ]
 
 export default function Tasks() {
-    const count = 0
+    const username = "full_stack_dev_010"
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
+
+    useEffect(() => {  
+        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            .then(res => setCurrentUser(res.data))
+            .catch(err => console.log(err))
+        }, [currentUser]);
     return (
         <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -49,7 +58,7 @@ export default function Tasks() {
                                 </div>
                                 <FaMoon size={20} style={{opacity: '70%'}} color="yellow"/>
                                 <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-yellow-400 text-opacity-80 flex">
-                                    {count}
+                                    {currentUser?.star}
                                 </div>
                             </div>
                         </div>
@@ -65,7 +74,7 @@ export default function Tasks() {
                                     alt="Spin Icon"
                                 />
                                 <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-white flex items-start">
-                                    {count}
+                                    {currentUser?.coin}
                                 </div>
                             </div>
                         </div>

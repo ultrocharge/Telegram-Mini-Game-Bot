@@ -6,15 +6,7 @@ import { motion } from 'framer-motion';
 import axios from 'axios'
 import { FaCheck } from "react-icons/fa";
 import Alert from "@/components/Alert";
-interface User {
-    username: string,
-    star : number,
-    coin: number,
-    date: Date,
-    spin: number,
-    week: number,
-    day: number
-}
+
 export default function CheckIn() {
     const username = "full_stack_dev_010"
     const [currentUser, setCurrentUser] = useState<User | null>(null)

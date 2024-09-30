@@ -6,17 +6,6 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Prize from "@/components/Prize";
 
-interface User {
-    username: string,
-    star : number,
-    coin: number,
-    date: Date,
-    spinDate: Date,
-    spin: number,
-    week: number,
-    day: number
-}
-
 export default function Spin() {
     const username = "full_stack_dev_010"
     const [rotation, setRotation] = useState(0);  
@@ -253,7 +242,7 @@ export default function Spin() {
                                 height={100}
                                 alt="Coin"
                             />
-                            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="font-bold text-center text-white mt-3">
+                            <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="font-bold text-lg text-center text-white mt-3">
                                 You can get spin 1 after an hour
                             </div>
                         </div>

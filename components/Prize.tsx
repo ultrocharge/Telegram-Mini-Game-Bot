@@ -2,11 +2,6 @@ import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
 import { FaMoon } from "react-icons/fa";
 
-interface PrizeProps {  
-    count: number | string; // You can adjust this based on what type `count` is expected to be  
-    state: string; // Assuming day is always expected to be a number  
-}  
-
 export default function Prize(props:PrizeProps) {
     return (
         <div className="max-w-sm mx-auto absolute px-5 top-5 left-1 bg-gray-500 bg-opacity-90 rounded-lg text-white font-extrabold py-2 w-full flex gap-2 text-2xl items-center" style={{ fontFamily: "'Brush Script MT', cursive"}}>
