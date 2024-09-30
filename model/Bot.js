@@ -10,6 +10,7 @@ const BotSchema = new Schema({
     day : {type: Number, default: 1},
     spin: {type: Number, default: 0},
     spinDate: {type: Date, default: Date.now()},
+    claimDate: {type: Date, default: () => Date.now() - 24*60*60*1000},
     date: {type:Date, default: Date.now()}
 })
 

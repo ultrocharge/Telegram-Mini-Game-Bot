@@ -28,6 +28,7 @@ router.post('/add', (req, res) => {
             if(bot) {
                 bot.username = req.body.username
                 bot.star = bot.star + req.body.star
+                bot.claimDate = req.body.claimDate
                 if(req.body.day === 7) {
                     bot.week = req.body.week + 1
                     bot.day = 1
