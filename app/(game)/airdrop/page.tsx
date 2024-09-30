@@ -51,7 +51,7 @@ export default function Wallet() {
                 alt="Coin"
             />
             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="text-xl font-extrabold text-yellow-300 text-opacity-90 mb-3">
-                Convert to $MOON token
+                Connect to Eclipse
             </div>
             <div style={{ fontFamily: "'Brush Script MT', cursive"}} className="font-bold text-white mb-1">
                 Comming Soon...
@@ -94,7 +94,7 @@ export default function Wallet() {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2 justify-center rounded-2xl py-1 px-3 bg-yellow-500 bg-opacity-20" onClick={() => open('walletConnect')}>
+                        <div className="flex items-center gap-2 cursor-pointer justify-center rounded-2xl py-1 px-3 bg-yellow-500 bg-opacity-20" onClick={() => open('walletConnect')}>
                             <Image
                                 src="/images/spinicon.png"
                                 width={20}
@@ -133,7 +133,7 @@ export default function Wallet() {
 
                 <div className="grid grid-cols-3 w-full gap-2 px-4">
                     {airdrop.map((item, index) => (
-                        <div key={index} onClick={() => index === 0 ? open('convert') : null} className="ring-1 col-span-1 ring-yellow-400 border-t-2 bg-[#1B1B1B] border-t-yellow-400 text-xs font-extrabold flex-col gap-1 py-3 px-2 rounded-lg flex items-center" style={{ fontFamily: "'Brush Script MT', cursive"}}>
+                        <div key={index} onClick={() => index === 0 ? open('convert') : null} className="cursor-pointer ring-1 col-span-1 ring-yellow-400 border-t-2 bg-[#1B1B1B] border-t-yellow-400 text-xs font-extrabold flex-col gap-1 py-3 px-2 rounded-lg flex items-center" style={{ fontFamily: "'Brush Script MT', cursive"}}>
                             {item.Icon}
                             <div>
                                 <div className="text-yellow-300 text-nowrap text-sm font-extrabold shadow-lg" style={{ textShadow: "1px -10px 30px yellow"}}>

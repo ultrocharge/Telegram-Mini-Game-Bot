@@ -64,7 +64,7 @@ export default function Ranking() {
     const ranking = '99+'
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 1 }}
             whileInView={{
                 opacity: 1,
                 y: 0,

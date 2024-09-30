@@ -34,9 +34,9 @@ export default function Friends() {
     }  
 
     const refs = (  
-        <div className="w-full px-4 flex-col flex gap-5 py-4 overflow-scroll h-[53.5%] sm:h-auto">  
+        <div className="w-full px-4 flex-col flex gap-5 py-4">  
             <div style={{ fontFamily: "'Brush Script MT', cursive" }} className="text-lg font-extrabold text-white text-center">You don&apos;t have referrals 😭</div>  
-            <div className="bg-stone-500 rounded-full w-full h-2" />  
+            <div className="bg-stone-500 rounded-full w-full h-2 hover:bg-slate-400" />  
         </div>  
     );  
 
@@ -170,6 +170,7 @@ export default function Friends() {
                                     height={35}
                                     unoptimized={true}
                                     alt="CheckIn"
+                                    className="cursor-pointer"
                                     onClick={() => setVisible(true)}
                                 />
                             </div>
