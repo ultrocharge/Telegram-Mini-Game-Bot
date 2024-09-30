@@ -15,7 +15,7 @@ const moverzbot = () => {
     
     bot.onText(/\/start/, (msg) => {
         const chatId = msg.chat.id
-        const username = msg.from.username ? `@${msg.from.username}` : msg.from.first_name;
+        const username = msg.from.username ? `${msg.from.username}` : msg.from.first_name;
 
         axios.post('http://localhost:5000/moverz/add', {username})
             .then(res => res.json(res))
