@@ -4,39 +4,23 @@ import Image from "next/image"
 import { FaMoon } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import { motion } from 'framer-motion'; 
+import Link from "next/link";
 const taskList = [
     {
         title: 'Join Mooncoin group',
-        count : 10000
+        count : 10000,
+        path: "https://t.me/mooncoin_svm"
     },
     {
         title: 'Join Mooncoin channel',
-        count : 10000
+        count : 10000,
+        path: "https://t.me/mooncoinsvm"
     },
     {
         title: 'Follow Moocoin',
-        count : 5000
+        count : 5000,
+        path: "https://x.com/MoonCoin_Staff"
     },
-    {
-        title: 'Retweet post',
-        count : 5000
-    },
-    {
-        title: 'Follow Eclipse',
-        count : 5000
-    },
-    {
-        title: 'Follow Mooncoin Dev',
-        count : 5000
-    },
-    {
-        title: 'Retweet Big News',
-        count : 5000
-    },
-    {
-        title: 'Comment Mooncoin',
-        count : 5000
-    }
 ]
 
 export default function Tasks() {
@@ -133,7 +117,7 @@ export default function Tasks() {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="py-1 px-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center items-end text-white">Start</button>
+                                <Link href={item.path} className="py-1 px-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center items-end text-white">Start</Link>
                             </div>
                         ))}
                     </div>
