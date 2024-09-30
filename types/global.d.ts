@@ -7,6 +7,7 @@ declare global {
     coin: number,
     spin: number,
     spinDate: Date,
+    claimDate: Date,
     week: number,
     day: number,
     date: Date

@@ -22,6 +22,7 @@ export default function Ranking() {
                     coin: item.coin,
                     spin: item.spin,
                     spinDate: item.spinDate,
+                    claimDate: item.claimDate,
                     week: item.week,
                     day: item.day,
                     date: item.date

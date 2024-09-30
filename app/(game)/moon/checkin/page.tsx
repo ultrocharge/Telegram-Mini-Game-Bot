@@ -18,37 +18,29 @@ export default function CheckIn() {
             .catch(err => console.log(err))
         }, [currentUser]);
 
-
     useEffect(() => {  
         if (currentUser) {  
-            const firstLoginDate = new Date(currentUser.date);  
-            
+            const firstLoginDate = new Date(currentUser.claimDate);  
             const currentDate = new Date();
-            
             const firstLoginTimestamp = firstLoginDate.getTime();  
             const currentTimestamp = currentDate.getTime();  
             
-            const differenceInMilliseconds = currentTimestamp - firstLoginTimestamp;  
-            
-            const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 3600 * 24));  
-
-            if(differenceInDays > 6) {
-                const rest = differenceInDays - 7*(currentUser.week-1)
-                setRestDays(rest + 1)
-            } else {
-                setRestDays(differenceInDays + 1)
-            }
+            const differenceInMilliseconds = currentTimestamp - firstLoginTimestamp;
+            const totalSeconds = Math.floor(differenceInMilliseconds / 1000);  
+            const restSec  = Math.floor(totalSeconds / 3600)
+            console.log(restSec)
+            setRestDays(restSec)
         }  
     }, [currentUser]);
     
     const getPrize = () => {
-        
         if (currentUser) {
             const data = {  
                 username: currentUser.username,  
                 week: currentUser.week,
                 day: currentUser.day,
                 spin: currentUser.spin,
+                claimDate: new Date().toUTCString(),
                 star: 1000
             };  
             axios.post('http://localhost:5000/moverz/add', data)  
@@ -160,7 +152,7 @@ export default function CheckIn() {
                     </div>
                 </div>
                 <div className="w-full flex justify-center py-5">
-                    <div className={`text-lg rounded-xl font-extrabold flex items-center justify-center py-1 w-52 ${restDays !== currentUser?.day ? 'cursor-not-allowed bg-yellow-500 bg-opacity-40' : 'bg-yellow-500 bg-opacity-90 cursor-pointer'}`} style={{ fontFamily: "'Brush Script MT', cursive"}} onClick={restDays === currentUser?.day ? getPrize : () => {return}}>Claim</div>
+                    <div className={`text-lg rounded-xl font-extrabold flex items-center justify-center py-1 w-52 ${restDays < 24 ? 'cursor-not-allowed bg-yellow-500 bg-opacity-40' : 'bg-yellow-500 bg-opacity-90 cursor-pointer'}`} style={{ fontFamily: "'Brush Script MT', cursive"}} onClick={restDays === 24 || restDays > 24 ? getPrize : () => {return}}>Claim</div>
                 </div>
                 {alert ? <Alert count={1000} day={currentUser?.day}/> : null}
             </div>
