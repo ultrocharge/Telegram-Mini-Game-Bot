@@ -9,6 +9,7 @@ const BotSchema = new Schema({
     week : {type: Number, default: 1},
     day : {type: Number, default: 1},
     spin: {type: Number, default: 0},
+    spinDate: {type: Date, default: Date.now()},
     date: {type:Date, default: Date.now()}
 })
 

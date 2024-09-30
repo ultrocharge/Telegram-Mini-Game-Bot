@@ -13,6 +13,7 @@ router.get('/currentuser/:username', (req, res) => {
 
 router.get('/show', (req, res) => {
     Bot.find()
+        .sort({coin: -1})
         .then(bot => {
             res.json(bot)
         })
@@ -20,7 +21,7 @@ router.get('/show', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-    const {username} = req.body
+    const {username, spin} = req.body
 
     Bot.findOne({username})
         .then(bot => {
@@ -34,16 +35,34 @@ router.post('/add', (req, res) => {
                 } else {
                     bot.day = req.body.day + 1
                 }
-
                 bot.save()
                     .then(res => console.log(res))
                     .catch(err => console.log(err))
             } else {
-                new Bot({username}).save()
+                new Bot({username, spin}).save()
                     .then(bot => console.log(bot))
                     .catch(err => console.log(err))
             }
         })
 })
+
+router.post('/add/spin', (req, res) => {
+    const {username} = req.body
+
+    Bot.findOne({username})
+        .then(bot => {
+            if(bot) {
+                bot.username = req.body.username
+                bot.star = req.body.star
+                bot.coin = req.body.coin
+                bot.spin = req.body.spin
+                bot.spinDate = req.body.spinDate
+                bot.save()
+                    .then(bot =>res.json(bot))
+                    .catch(err => console.log(err))
+            }
+        })
+})
+
 
 module.exports = router;
