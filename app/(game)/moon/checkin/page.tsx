@@ -1,10 +1,77 @@
 "use client"
 import { FaMoon } from "react-icons/fa";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { motion } from 'framer-motion'; 
+import axios from 'axios'
+import { FaCheck } from "react-icons/fa";
+import Alert from "@/components/Alert";
+interface User {
+    username: string,
+    star : number,
+    coin: number,
+    date: Date,
+    spin: number,
+    week: number,
+    day: number
+}
 export default function CheckIn() {
-    const week = 1
-    const day = 5
+    const username = "full_stack_dev_010"
+    const [currentUser, setCurrentUser] = useState<User | null>(null)
+    const [restDays, setRestDays] = useState(0)
+    const [alert, setAlert] = useState(false)
+    useEffect(() => {  
+        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            .then(res => setCurrentUser(res.data))
+            .catch(err => console.log(err))
+        }, [currentUser]);
+
+
+    useEffect(() => {  
+        if (currentUser) {  
+            const firstLoginDate = new Date(currentUser.date);  
+            
+            const currentDate = new Date();
+            
+            const firstLoginTimestamp = firstLoginDate.getTime();  
+            const currentTimestamp = currentDate.getTime();  
+            
+            const differenceInMilliseconds = currentTimestamp - firstLoginTimestamp;  
+            
+            const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 3600 * 24));  
+
+            if(differenceInDays > 6) {
+                const rest = differenceInDays - 7*(currentUser.week-1)
+                setRestDays(rest + 1)
+            } else {
+                setRestDays(differenceInDays + 1)
+            }
+        }  
+    }, [currentUser]);
+    
+    const getPrize = () => {
+        
+        if (currentUser) {
+            const data = {  
+                username: currentUser.username,  
+                week: currentUser.week,
+                day: currentUser.day,
+                spin: currentUser.spin,
+                star: 1000
+            };  
+            axios.post('http://localhost:5000/moverz/add', data)  
+                .then(res => console.log(res.data))  
+                .catch(err => console.error(err));  
+        }
+        showAlert()
+    }
+
+    const showAlert = () => {
+        setAlert(true)
+        setTimeout(() => {
+            setAlert(false  )
+        }, 2000)
+    }
     return (
         <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -54,11 +121,10 @@ export default function CheckIn() {
                                 </div>
                             </div>
                         </div>
-
                         <div className="grid grid-cols-4 gap-3 w-full">
                             {
-                                Array.from({ length: 8 }, (_, i) => (
-                                    <div key={i+1} style={{ fontFamily: "'Brush Script MT', cursive"}} className={`${ i + 1 === week ? 'ring-2 ring-yellow-500' : null} text-sm font-extrabold text-yellow-300 text-opacity-8 text-center 0 flex items-start rounded-xl p-3 bg-yellow-500 bg-opacity-20`}>
+                              currentUser &&  Array.from({ length: 8 }, (_, i) => (
+                                    <div key={i+1} style={{ fontFamily: "'Brush Script MT', cursive"}} className={`${ i + 1 === currentUser?.week ? 'ring-2 ring-yellow-500' : null} text-sm font-extrabold text-yellow-300 text-opacity-8 text-center 0 flex items-start rounded-xl p-3 ${i + 1 < currentUser?.week ? 'bg-yellow-500 bg-opacity-20' : 'bg-yellow-500 bg-opacity-30'}`}>
                                         Week {i+1}
                                     </div>
                                 ))
@@ -69,15 +135,15 @@ export default function CheckIn() {
                     <div className="w-full p-4">
                         <div className="grid grid-cols-4 gap-3">
                             {
-                                Array.from({ length: 7}, (_, i) => (
-                                    <div key={i + 1} style={{ fontFamily: "'Brush Script MT', cursive"}} className={`${i + 1 === 7 ? 'col-span-2' : null} text-sm font-extrabold text-white flex flex-col gap-2 items-center justify-center ${ i + 1 === day ? 'ring-1 ring-yellow-500' : null} rounded-xl p-2 bg-yellow-500 bg-opacity-20`}>
+                              currentUser &&  Array.from({ length: 7}, (_, i) => (
+                                    <div key={i + 1} style={{ fontFamily: "'Brush Script MT', cursive"}} className={`${i + 1 === 7 ? 'col-span-2' : null} text-sm font-extrabold text-white flex flex-col gap-2 items-center justify-center ${ i + 1 === currentUser?.day ? 'ring-1 ring-yellow-500' : null} rounded-xl p-2 ${i + 1 < currentUser?.day ? 'bg-yellow-500 bg-opacity-20' : 'bg-yellow-500 bg-opacity-30'}`}>
                                         <div>Day {i + 1}</div>
                                         <div className="flex flex-row gap-2">
                                             <div className="flex flex-col justify-center items-center gap-2">
                                                 <div className="flex items-center">
                                                     <FaMoon size={20} style={{opacity: '70%'}} color="yellow"/>
                                                 </div>
-                                                <div>1,000</div>
+                                                {i + 1 < currentUser?.day ? <FaCheck size={15} color="green"/> : <div>1,000</div>}
                                             </div>
                                             { i + 1 === 7 ? (
                                                 <>
@@ -102,8 +168,9 @@ export default function CheckIn() {
                     </div>
                 </div>
                 <div className="w-full flex justify-center py-5">
-                    <div className="bg-yellow-500 bg-opacity-65 text-lg rounded-xl font-extrabold flex items-center justify-center py-1 w-52" style={{ fontFamily: "'Brush Script MT', cursive"}}>Claim</div>
+                    <div className={`text-lg rounded-xl font-extrabold flex items-center justify-center py-1 w-52 ${restDays !== currentUser?.day ? 'cursor-not-allowed bg-yellow-500 bg-opacity-40' : 'bg-yellow-500 bg-opacity-90 cursor-pointer'}`} style={{ fontFamily: "'Brush Script MT', cursive"}} onClick={restDays === currentUser?.day ? getPrize : () => {return}}>Claim</div>
                 </div>
+                {alert ? <Alert count={1000} day={currentUser?.day}/> : null}
             </div>
         </motion.div>
     )
