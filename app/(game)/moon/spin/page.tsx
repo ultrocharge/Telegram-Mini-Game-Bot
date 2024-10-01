@@ -50,7 +50,7 @@ export default function Spin() {
                 coin: currentUser.coin,  
                 spinDate: new Date().toUTCString()  
             };   
-            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/spin', data)  
+            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }  
@@ -114,7 +114,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/spin', data)  
+                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
                     .then(() => {
                         setStar(true)
                         setValue(star)
@@ -130,7 +130,7 @@ export default function Spin() {
                         coin: currentUser.coin + coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/spin', data)  
+                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
                     .then(() => {
                         setCoin(true)
                         setValue(coin)
@@ -146,7 +146,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/spin', data)  
+                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
                     .then(() => {
                         setSpin(true)
                         setValue(spin)

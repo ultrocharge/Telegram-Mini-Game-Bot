@@ -11,7 +11,7 @@ export default function Ranking() {
     const [ranking, setRanking] = useState(0)
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/show')
+            await axios.get('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/show')
                 .then(res => setDataSource(res.data))
                 .catch(err => console.log(err))
         }

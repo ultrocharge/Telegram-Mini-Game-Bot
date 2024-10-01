@@ -46,7 +46,7 @@ export default function CheckIn() {
                 claimDate: new Date().toUTCString(),
                 star: 1000
             };  
-            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/claim', data)  
+            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/claim', data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }

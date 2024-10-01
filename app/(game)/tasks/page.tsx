@@ -65,7 +65,7 @@ export default function Tasks() {
                         channel: index === 1 ? true : false
                     }; 
 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/task', data)  
+                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/task', data)  
                     .then(res => console.log(res))  
                     .catch(err => console.error(err)); 
 
