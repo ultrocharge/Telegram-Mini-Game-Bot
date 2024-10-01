@@ -20,17 +20,7 @@ export default function Ranking() {
 
         dataSource.map((item, index) => {
             if (item.username === username) {
-                setCurrentUser({
-                    username: item.username,
-                    star: item.star,
-                    coin: item.coin,
-                    spin: item.spin,
-                    spinDate: item.spinDate,
-                    claimDate: item.claimDate,
-                    week: item.week,
-                    day: item.day,
-                    date: item.date
-                })
+                setCurrentUser(item)
                 setRanking(index + 1)
             }
         })

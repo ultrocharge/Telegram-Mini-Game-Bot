@@ -30,6 +30,10 @@ declare global {
     claimDate: Date,
     week: number,
     day: number,
+    tasks: {
+        channel : boolean,
+        group : boolean
+    },
     date: Date
   }
 
