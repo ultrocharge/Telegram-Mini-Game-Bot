@@ -11,6 +11,10 @@ const BotSchema = new Schema({
     spin: {type: Number, default: 0},
     spinDate: {type: Date, default: Date.now()},
     claimDate: {type: Date, default: () => Date.now() - 24*60*60*1000},
+    tasks: {
+        channel : {type:Boolean, default:false},
+        group : {type:Boolean, default:false},
+    },
     date: {type:Date, default: Date.now()}
 })
 
