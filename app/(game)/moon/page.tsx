@@ -57,6 +57,7 @@ export default function Moon() {
               `https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`
             );
             if (response.ok) {
+            console.log('response', response)
               console.log('Webhook set successfully');
             } else {
               console.error('Failed to set webhook');
@@ -65,7 +66,6 @@ export default function Moon() {
             console.error('Error setting webhook:', error);
           }
         };
-    
         setWebhook();
       }, []);
 
