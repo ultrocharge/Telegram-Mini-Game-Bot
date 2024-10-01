@@ -51,16 +51,23 @@ export default function Moon() {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     useEffect(() => {
-        // Get the Telegram user ID from the query parameters
-        const userId = new URLSearchParams(window.location.search).get('userId');
-        
-        if (userId) {
-            console.log('User ID from Telegram:', userId);
-            // You can now use the userId as needed in your app
-        } else {
-            console.log('There is no username')
-        }
-    }, []);
+        const setWebhook = async () => {
+          try {
+            const response = await fetch(
+              `https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`
+            );
+            if (response.ok) {
+              console.log('Webhook set successfully');
+            } else {
+              console.error('Failed to set webhook');
+            }
+          } catch (error) {
+            console.error('Error setting webhook:', error);
+          }
+        };
+    
+        setWebhook();
+      }, []);
 
     useEffect(() => {  
         const fetchData = async () => {
