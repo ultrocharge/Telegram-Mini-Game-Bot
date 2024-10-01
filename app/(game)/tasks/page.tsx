@@ -16,7 +16,7 @@ export default function Tasks() {
     const [status, setStatus] = useState<{[key: number]: 'start' | 'verify' | 'ok' | 'try-again'}>({});
     useEffect(() => {  
         const fetchData = async () => {
-            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app//moverz/currentuser/${username}`)
+            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app/moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err));
         };

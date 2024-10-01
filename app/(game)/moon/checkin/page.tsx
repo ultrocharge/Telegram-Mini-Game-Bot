@@ -14,7 +14,7 @@ export default function CheckIn() {
     const [alert, setAlert] = useState(false)
     useEffect(() => {  
         const fetchData = async() => {
-            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app//moverz/currentuser/${username}`)
+            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app/moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }
