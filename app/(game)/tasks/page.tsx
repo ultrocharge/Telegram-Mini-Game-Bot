@@ -5,35 +5,65 @@ import { FaMoon } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import { motion } from 'framer-motion'; 
 import { useState, useEffect } from "react";
+import { IoMdSettings } from "react-icons/io";
 import axios from "axios";
 import Link from "next/link";
 const taskList = [
     {
         title: 'Join Mooncoin group',
         count : 10000,
-        path: "https://t.me/mooncoin_svm"
+        path: "https://t.me/mooncoin_svm",
+        member: "@mooncoin_svm"
     },
     {
         title: 'Join Mooncoin channel',
         count : 10000,
-        path: "https://t.me/mooncoinsvm"
+        path: "https://t.me/mooncoinsvm",
+        member: "@mooncoinsvm"
     },
     {
         title: 'Follow Moocoin',
         count : 5000,
-        path: "https://x.com/MoonCoin_Staff"
+        path: "https://x.com/MoonCoin_Staff",
+        member: "@mooncoinsvm"
     },
 ]
 
 export default function Tasks() {
     const username = "full_stack_dev_010"
     const [currentUser, setCurrentUser] = useState<User | null>(null)
-
+    const [verify, setVerify] = useState(false)
     useEffect(() => {  
-        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
-            .then(res => setCurrentUser(res.data))
-            .catch(err => console.log(err))
-        }, [currentUser]);
+        const fetchData = async () => {
+            await axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+                .then(res => setCurrentUser(res.data))
+                .catch(err => console.log(err))
+        }
+        fetchData()
+    }, [currentUser]);
+
+    const checkMembership = async (member: string) => {
+        setVerify(true)
+        const telegramUserId = '6278286234';
+        try {
+        const response = await fetch('/api/telegram/checkmember', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: telegramUserId, member: member }),
+        });
+        
+        const data = await response.json();
+        if (data.isMember) {
+            setVerify(false)
+        } else {
+        }
+        } catch (error) {
+            console.error('Error checking membership:', error);
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -126,7 +156,14 @@ export default function Tasks() {
                                         </div>
                                     </div>
                                 </div>
-                                <Link href={item.path} className="py-1 px-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center items-end text-white">Start</Link>
+                                <Link href={item.path} target="_blank" className="py-1 px-3 rounded-full items-center gap-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-sm font-extrabold flex justify-center text-white" onClick={() => checkMembership(item.member)}>
+                                    <div className={`items-center gap-1 ${verify ? 'flex' : 'hidden'}`}>
+                                        <IoMdSettings className="animate-spin"/> Verify
+                                    </div>
+                                    <div className={verify ? 'hidden': ''}>
+                                        Start
+                                    </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
