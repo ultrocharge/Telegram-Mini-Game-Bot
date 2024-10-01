@@ -6,9 +6,9 @@ export async function POST(req: Request) {
   // Get the message and user id
   const chatId = update.message.chat.id; // Telegram user ID
   const userId = update.message.from.id;
-
+  console.log('call api/telegram')
   console.log('userID', userId)
-  
+
   // Optional: send a message back to the user
   await fetch(`https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/sendMessage`, {
     method: 'POST',
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
           [
             {
               text: 'Open App',
-              url: `https://moon-moverz.netlify.app?userId=${userId}`
+              url: `https://moon-moverz.netlify.app/moon?userId=${userId}`
             },
           ],
         ],
