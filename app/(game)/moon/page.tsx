@@ -49,10 +49,32 @@ export default function Moon() {
     const [visible, setVisible] = useState(false)
     const [currentTitle, setCurrentTitle] = useState('')
     const [currentUser, setCurrentUser] = useState<User | null>(null)
+    const [user, setUser] = useState<TelegramUser | null>(null);
+
+    useEffect(() => {
+      if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+        const telegram = window.Telegram.WebApp;
+  
+        // Ensure that Telegram is providing the user object
+        const userData = telegram.initDataUnsafe?.user;
+
+        console.log('userData', userData)
+        
+        if (userData) {
+          const { id, username } = userData;
+          setUser({ id, username });
+        }
+      }
+    }, [user]);
+
     useEffect(() => {  
-        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
-            .then(res => setCurrentUser(res.data))
-            .catch(err => console.log(err))
+        const fetchData = async () => {
+            axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+                .then(res => setCurrentUser(res.data))
+                .catch(err => console.log(err))
+        }
+
+        fetchData()
     }, [currentUser]);
 
     const open = (title: string) => {
@@ -226,6 +248,18 @@ export default function Moon() {
                             { currentTitle === 'products' ? products : null}
                         </div>
                     </div>
+
+                    <div className="text-white">
+                        {user ? (
+                            <div>
+                            <h1>User Info</h1>
+                            <p><strong>ID:</strong> {user.id}</p>
+                            <p><strong>Username:</strong> {user.username || 'No username available'}</p>
+                            </div>
+                        ) : (
+                            <p>Loading user information...</p>
+                        )}
+                        </div>
                 </div>
             </div>
         </motion.div>
