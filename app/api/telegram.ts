@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import bodyParser from 'body-parser';
 import axios from 'axios';
 
 export const config = {
@@ -35,8 +33,7 @@ const getTelegramID = (req, res) => {
   });
 };
 
-const sendMessage = async (chatId:Number, message:String) => {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN; // Store your bot token in an environment variable
+const sendMessage = async (chatId:number, message:string) => {
   const url = `https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/sendMessage`;
 
   await axios.post(url, {
