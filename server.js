@@ -14,7 +14,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 app.use('/moverz', require('./routes/bot'))
-
+app.get("/", () => {
+    console.log("Server is running correctly!")
+})
 moverzbot()
 
 app.listen(5000, console.log("Server running on port 5000"))
