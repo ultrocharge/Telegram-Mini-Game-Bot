@@ -53,15 +53,18 @@ export default function Moon() {
     useEffect(() => {
         const setWebhook = async () => {
           try {
-            const response = await fetch(
-              `https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`
-            );
-            if (response.ok) {
-            console.log('response', response)
-              console.log('Webhook set successfully');
-            } else {
-              console.error('Failed to set webhook');
-            }
+
+            const axiosInstance = axios.create({
+                baseURL: process.env.BACKEND_URL_PORT,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            await axiosInstance.get(`https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`)
+            .then(res => console.log(res.data))
+            .catch(err => err.response)
+
           } catch (error) {
             console.error('Error setting webhook:', error);
           }

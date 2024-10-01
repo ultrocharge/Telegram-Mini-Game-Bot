@@ -32,7 +32,6 @@ export default function CheckIn() {
             const differenceInMilliseconds = currentTimestamp - firstLoginTimestamp;
             const totalSeconds = Math.floor(differenceInMilliseconds / 1000);  
             const restSec  = Math.floor(totalSeconds / 3600)
-            console.log(restSec)
             setRestDays(restSec)
         }  
     }, [currentUser]);
@@ -47,7 +46,7 @@ export default function CheckIn() {
                 claimDate: new Date().toUTCString(),
                 star: 1000
             };  
-            await axios.post('http://localhost:5000/moverz/add', data)  
+            await axios.post('http://localhost:5000/moverz/add/claim', data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }
