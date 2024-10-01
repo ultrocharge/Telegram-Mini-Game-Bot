@@ -18,7 +18,7 @@ const moverzbot = () => {
         const username = msg.from.username ? `${msg.from.username}` : msg.from.first_name;
 
         axios.post('http://localhost:5000/moverz/add', {username: username, spin: 2})
-            .then(res => res.json(res))
+            .then(res => console.log(res))
             .catch(err => console.log(err))
 
         // Message template with the dynamic username
