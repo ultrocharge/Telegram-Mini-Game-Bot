@@ -30,10 +30,14 @@ export default function Wallet() {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 
     useEffect(() => {  
-        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
-            .then(res => setCurrentUser(res.data))
-            .catch(err => console.log(err))
-        }, [currentUser]);
+        const fetchData = async () => {
+            axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+                .then(res => setCurrentUser(res.data))
+                .catch(err => console.log(err))
+        }
+
+        fetchData()
+    }, [currentUser]);
 
     const convert = (
         <div className="flex flex-col justify-center gap-2 items-center">

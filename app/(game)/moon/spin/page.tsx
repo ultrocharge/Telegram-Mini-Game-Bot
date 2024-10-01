@@ -16,9 +16,13 @@ export default function Spin() {
     const [value, setValue] = useState(0)
     const [currentUser, setCurrentUser] = useState<User | null>(null)
     useEffect(() => {  
-        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
-            .then(res => setCurrentUser(res.data))
-            .catch(err => console.log(err))
+        const fetchData = async() => {
+            await axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+                .then(res => setCurrentUser(res.data))
+                .catch(err => console.log(err))
+        }
+
+        fetchData()
     }, [currentUser]);
 
     useEffect(() => {  
@@ -126,7 +130,7 @@ export default function Spin() {
                         coin: currentUser.coin + coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    axios.post('http://localhost:5000/moverz/add/spin', data)  
+                    await axios.post('http://localhost:5000/moverz/add/spin', data)  
                     .then(() => {
                         setCoin(true)
                         setValue(coin)
@@ -142,7 +146,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    axios.post('http://localhost:5000/moverz/add/spin', data)  
+                    await axios.post('http://localhost:5000/moverz/add/spin', data)  
                     .then(() => {
                         setSpin(true)
                         setValue(spin)

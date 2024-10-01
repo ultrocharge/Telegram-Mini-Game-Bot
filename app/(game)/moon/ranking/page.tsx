@@ -10,9 +10,13 @@ export default function Ranking() {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
     const [ranking, setRanking] = useState(0)
     useEffect(() => {
-        axios.get('http://localhost:5000/moverz/show')
-            .then(res => setDataSource(res.data))
-            .catch(err => console.log(err))
+        const fetchData = async () => {
+            await axios.get('http://localhost:5000/moverz/show')
+                .then(res => setDataSource(res.data))
+                .catch(err => console.log(err))
+        }
+
+        fetchData()
 
         dataSource.map((item, index) => {
             if (item.username === username) {

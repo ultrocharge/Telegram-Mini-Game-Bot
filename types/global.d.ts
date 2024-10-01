@@ -1,6 +1,26 @@
 export {};  
 
 declare global {  
+  interface Window {
+    Telegram: {
+      WebApp: {
+        initDataUnsafe: {
+          user?: {
+            id: number;
+            username?: string;
+            first_name?: string;
+            last_name?: string;
+          };
+        };
+      };
+    };
+  }
+
+  interface TelegramUser {
+    id: number;
+    username?: string; // Username can be undefined
+  }
+
   interface User {
     username: string,
     star: number,

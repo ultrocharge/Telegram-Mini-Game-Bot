@@ -13,10 +13,14 @@ export default function CheckIn() {
     const [restDays, setRestDays] = useState(0)
     const [alert, setAlert] = useState(false)
     useEffect(() => {  
-        axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
-            .then(res => setCurrentUser(res.data))
-            .catch(err => console.log(err))
-        }, [currentUser]);
+        const fetchData = async() => {
+            await axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+                .then(res => setCurrentUser(res.data))
+                .catch(err => console.log(err))
+        }
+
+        fetchData()
+    }, [currentUser]);
 
     useEffect(() => {  
         if (currentUser) {  
@@ -33,7 +37,7 @@ export default function CheckIn() {
         }  
     }, [currentUser]);
     
-    const getPrize = () => {
+    const getPrize = async () => {
         if (currentUser) {
             const data = {  
                 username: currentUser.username,  
@@ -43,7 +47,7 @@ export default function CheckIn() {
                 claimDate: new Date().toUTCString(),
                 star: 1000
             };  
-            axios.post('http://localhost:5000/moverz/add', data)  
+            await axios.post('http://localhost:5000/moverz/add', data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }
