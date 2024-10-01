@@ -25,6 +25,18 @@ router.post('/add', (req, res) => {
 
     Bot.findOne({username})
         .then(bot => {
+            if(!bot) {
+                new Bot({username, spin}).save()
+                    .then(bot => res.json(bot))
+                    .catch(err => console.log(err))
+            }
+        })
+})
+
+router.post('/add/claim', (req, res) => {
+    const {username} = req.body
+    Bot.findOne({username})
+        .then(bot => {
             if(bot) {
                 bot.username = req.body.username
                 bot.star = bot.star + req.body.star
@@ -37,11 +49,7 @@ router.post('/add', (req, res) => {
                     bot.day = req.body.day + 1
                 }
                 bot.save()
-                    .then(res => console.log(res))
-                    .catch(err => console.log(err))
-            } else {
-                new Bot({username, spin}).save()
-                    .then(bot => console.log(bot))
+                    .then(bot => res.json(bot))
                     .catch(err => console.log(err))
             }
         })
@@ -58,6 +66,22 @@ router.post('/add/spin', (req, res) => {
                 bot.coin = req.body.coin
                 bot.spin = req.body.spin
                 bot.spinDate = req.body.spinDate
+                bot.save()
+                    .then(bot =>res.json(bot))
+                    .catch(err => console.log(err))
+            }
+        })
+})
+router.post('/add/task', (req, res) => {
+    const {username} = req.body
+
+    Bot.findOne({username})
+        .then(bot => {
+            if(bot) {
+                bot.username = req.body.username
+                bot.star = req.body.star
+                bot.tasks.group = req.body.group
+                bot.tasks.channel = req.body.channel
                 bot.save()
                     .then(bot =>res.json(bot))
                     .catch(err => console.log(err))
