@@ -62,8 +62,8 @@ export default function Moon() {
             });
 
             await axiosInstance.get(`https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`)
-            .then(res => console.log(res.data))
-            .catch(err => err.response)
+                .then(res => console.log(res))
+                .catch(err => err.response)
 
           } catch (error) {
             console.error('Error setting webhook:', error);
