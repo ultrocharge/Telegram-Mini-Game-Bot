@@ -1,4 +1,3 @@
-// pages/api/telegram.js
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -13,8 +12,19 @@ export async function POST(req: Request) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       chat_id: chatId,
-      text: userId,
+      text: 'Click below to open the app!',
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: 'Open App',
+              url: `https://moon-moverz.netlify.app?userId=${userId}`
+            },
+          ],
+        ],
+      },
     }),
   });
+  
   return NextResponse.json({ received: true });
 }
