@@ -31,7 +31,7 @@ export default function Wallet() {
 
     useEffect(() => {  
         const fetchData = async () => {
-            axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app//moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }

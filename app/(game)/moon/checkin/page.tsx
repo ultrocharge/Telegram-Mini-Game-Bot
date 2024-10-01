@@ -14,7 +14,7 @@ export default function CheckIn() {
     const [alert, setAlert] = useState(false)
     useEffect(() => {  
         const fetchData = async() => {
-            await axios.get(`http://localhost:5000/moverz/currentuser/${username}`)
+            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app//moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }
@@ -46,7 +46,7 @@ export default function CheckIn() {
                 claimDate: new Date().toUTCString(),
                 star: 1000
             };  
-            await axios.post('http://localhost:5000/moverz/add/claim', data)  
+            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app//moverz/add/claim', data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }

@@ -18,7 +18,7 @@
     "react-dom": "^18",
     "react-icons": "^5.3.0"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "https://telegram-mini-game-backend-kf6b.vercel.app/",
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
