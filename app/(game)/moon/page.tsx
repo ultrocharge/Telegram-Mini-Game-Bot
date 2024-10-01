@@ -57,6 +57,8 @@ export default function Moon() {
         if (userId) {
             console.log('User ID from Telegram:', userId);
             // You can now use the userId as needed in your app
+        } else {
+            console.log('There is no username')
         }
     }, []);
 
@@ -66,7 +68,6 @@ export default function Moon() {
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }
-
         fetchData()
     }, [currentUser]);
 
