@@ -1,7 +1,7 @@
 // pages/api/telegram.js
 import { NextResponse } from 'next/server';
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
   const update = await req.json();
   
   // Get the message and user id
