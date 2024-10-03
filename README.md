@@ -3,9 +3,12 @@
 First, run the development server:
 
 ```bash
-node bot.js
+npm install
+```
+```bash
+npm start
 ```
 
 ## About Project
 
-This is Telegram mini bot
+Telegram MINI Game Bot APP
