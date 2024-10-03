@@ -17,7 +17,7 @@ export default function Spin() {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
     useEffect(() => {  
         const fetchData = async() => {
-            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app/moverz/currentuser/${username}`)
+            await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }
@@ -50,7 +50,7 @@ export default function Spin() {
                 coin: currentUser.coin,  
                 spinDate: new Date().toUTCString()  
             };   
-            await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
+            await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/add/spin`, data)  
                 .then(res => console.log(res.data))  
                 .catch(err => console.error(err));  
         }  
@@ -114,7 +114,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setStar(true)
                         setValue(star)
@@ -130,7 +130,7 @@ export default function Spin() {
                         coin: currentUser.coin + coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setCoin(true)
                         setValue(coin)
@@ -146,7 +146,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/spin', data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setSpin(true)
                         setValue(spin)

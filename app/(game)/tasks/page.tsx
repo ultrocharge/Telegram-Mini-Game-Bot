@@ -16,7 +16,7 @@ export default function Tasks() {
     const [status, setStatus] = useState<{[key: number]: 'start' | 'verify' | 'ok' | 'try-again'}>({});
     useEffect(() => {  
         const fetchData = async () => {
-            await axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app/moverz/currentuser/${username}`)
+            await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err));
         };
@@ -65,7 +65,7 @@ export default function Tasks() {
                         channel: index === 1 ? true : false
                     }; 
 
-                    await axios.post('https://telegram-mini-game-backend-kf6b.vercel.app/moverz/add/task', data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/task', data)  
                     .then(res => console.log(res))  
                     .catch(err => console.error(err)); 
 

@@ -5,14 +5,13 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 
 export default function Home() { 
-
   const router = useRouter();
+  
   useEffect(() => {
     const timer = setTimeout(() => {  
       router.push('/moon');  
-    }, 5000);  
+    }, 1000);  
 
-    // Cleanup timer on component unmount  
     return () => clearTimeout(timer);  
   },[router])
 

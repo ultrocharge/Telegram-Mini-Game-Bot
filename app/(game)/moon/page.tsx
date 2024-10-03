@@ -50,31 +50,9 @@ export default function Moon() {
     const [currentTitle, setCurrentTitle] = useState('')
     const [currentUser, setCurrentUser] = useState<User | null>(null)
 
-    // useEffect(() => {
-    //     const setWebhook = async () => {
-    //       try {
-
-    //         const axiosInstance = axios.create({
-    //             baseURL: process.env.BACKEND_URL_PORT,
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //         });
-
-    //         await axiosInstance.get(`https://api.telegram.org/bot7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ/setWebhook?url=https://moon-moverz.netlify.app/api/telegram`)
-    //             .then(res => console.log(res))
-    //             .catch(err => err.response)
-
-    //       } catch (error) {
-    //         console.error('Error setting webhook:', error);
-    //       }
-    //     };
-    //     setWebhook();
-    //   }, []);
-
     useEffect(() => {  
         const fetchData = async () => {
-            axios.get(`https://telegram-mini-game-backend-kf6b.vercel.app/moverz/currentuser/${username}`)
+            axios.get(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/currentuser/${username}`)
                 .then(res => setCurrentUser(res.data))
                 .catch(err => console.log(err))
         }
