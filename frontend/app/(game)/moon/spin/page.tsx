@@ -50,9 +50,9 @@ export default function Spin() {
                 coin: currentUser.coin,  
                 spinDate: new Date().toUTCString()  
             };   
-            await axios.post(`http://localhost:5000/moverz/add/spin`, data)  
+            await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/add/spin`, data)  
                 .then(res => console.log(res.data))  
-                .catch(err => console.error(err));
+                .catch(err => console.error(err));  
         }  
     }, [currentUser]);
 
@@ -114,7 +114,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/add/spin`, data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setStar(true)
                         setValue(star)
@@ -130,7 +130,7 @@ export default function Spin() {
                         coin: currentUser.coin + coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/add/spin`, data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setCoin(true)
                         setValue(coin)
@@ -146,7 +146,7 @@ export default function Spin() {
                         coin: currentUser.coin,
                         spinDate: new Date().toUTCString()
                     }; 
-                    await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URI}/moverz/add/spin`, data)  
+                    await axios.post('${NEXT_PUBLIC_SERVER_URI}/moverz/add/spin', data)  
                     .then(() => {
                         setSpin(true)
                         setValue(spin)

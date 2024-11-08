@@ -3,7 +3,7 @@ const moverzbot = () => {
 
     const axios = require('axios')
 
-    const token = process.env.BOT_TOKEN;
+    const token = '7679497504:AAHUn4Kq5kjY1rqiw7M_PzxH9D8JipElEwQ';
 
     const bot = new TelegramBot(token, {polling: true});
     
@@ -19,7 +19,7 @@ const moverzbot = () => {
         const username = msg.from.username ? `${msg.from.username}` : msg.from.first_name;
 
         axios.post(`${process.env.SERVER_URI}/moverz/add`, {username: username, spin: 2})
-            .then(res => console.log(res.data))
+            .then(res => res.json(res))
             .catch(err => console.log(err))
 
         // Message template with the dynamic username
